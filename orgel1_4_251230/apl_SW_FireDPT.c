@@ -1,92 +1,92 @@
 /*
-｢糸魚川に春よ来い2026｣として､100均の消防車おもちゃを､PUYA電子ｵﾙｺﾞｰﾙ付きに改造する
-地元の消防本部に寄贈し､広報活動に活用してもらうことを期待 (2026/3/15 ToyDr.わたなべ)
+�������ɏt�旈��2026��Ƃ��Ĥ100�ς̏��h�Ԃ��������PUYA�d�q�ٺްٕt���ɉ�������
+�n���̏��h�{���Ɋ񑡂���L�񊈓��Ɋ��p���Ă��炤���Ƃ����� (2026/3/15 ToyDr.�킽�Ȃ�)
 
-【動作仕様】
+�y����d�l�z
 
-・電源ｽｲｯﾁなし、常時はｽﾘｰﾌﾟしている
+�E�d�������Ȃ��A�펞�ͽذ�߂��Ă���
 
-・SW0の短ｵﾝ検知で､ｵﾙｺﾞｰﾙ効果音演奏と音声Nを同時再生する
-　消防車､救急車やﾊﾟﾄｶｰのｻｲﾚﾝ効果音に加えて､
-　糸魚川ゆかりの｢春よ来い(詞:相馬御風)｣と､
-　ｱﾝﾊﾟﾝﾏｰﾁの2曲も実装する
-　音声Nはﾒﾓﾘの範囲内で､おしゃべり音声を実装する
-　ｵﾙｺﾞｰﾙ効果音はﾗﾝﾀﾞﾑ演奏､おしゃべり音声は順次再生する
-　ﾀｲﾏｰﾓｰﾄﾞの長ｵﾝ一致で､演奏･再生を停止する
+�ESW0�̒Z�݌��m�Ť�ٺްٌ��ʉ����t�Ɖ���N�𓯎��Đ�����
+�@���h�Ԥ�~�}�Ԃ���Ķ��̻��݌��ʉ��ɉ����Ĥ
+�@������䂩��̢�t�旈��(��:���n�䕗)��Ƥ
+�@�����ϰ���2�Ȃ���������
+�@����N����؂͈͓̔��Ť������ׂ艹������������
+�@�ٺްٌ��ʉ�������щ��t�������ׂ艹���͏����Đ�����
+�@��ϰӰ�ނ̒��݈�v�Ť���t��Đ����~����
 
-・CVD実装を宣言すると､CVD0のｵﾝ変化でも､音声Nを単独再生できる
-　再生中のｵﾝ変化は､次の音声を順次再生する
-　ﾘｱﾙﾓｰﾄﾞだが､ｵﾝからｵﾌへの変化は無視する
+�ECVD������錾����ƤCVD0�̵ݕω��łउ���N��P�ƍĐ��ł���
+�@�Đ����̵ݕω��ͤ���̉����������Đ�����
+�@ر�Ӱ�ނ�����݂���̂ւ̕ω��͖�������
 
-・演奏中や再生中は2Hz周期で､LED2個を交互点滅する
+�E���t����Đ�����2Hz�����ŤLED2�����ݓ_�ł���
 
-このｺｰﾄﾞは｢PUYA電子ｵﾙｺﾞｰﾙ+音声再生｣を､おもちゃ修理に応用するための限定版であり､
-無用の共通化部分を含んでいる｡
+���̺��ނ͢PUYA�d�q�ٺް�+�����Đ���𤂨������C���ɉ��p���邽�߂̌���łł���
+���p�̋��ʉ��������܂�ł���
 */
 
 
-//SW･CdS･CVDで電子ｵﾙｺﾞｰﾙを制御するｱﾌﾟﾘｹｰｼｮﾝの共通機能部
+//SW�CdS�CVD�œd�q�ٺްق𐧌䂷����ع���݂̋��ʋ@�\��
 
-//複数のSW･１個のCdS･複数のCVDを実装可能｡但しﾎﾟｰﾄ割当てが可能なもの｡
-//それぞれをｵﾙｺﾞｰﾙ演奏･ﾌﾗｯｼｭ音声再生･ﾌﾟﾛｸﾞﾗﾑ音声再生の開始･中断に充てることができる｡
-//短ｵﾝで開始､長ｵﾝで中断する｡
-//曲･音声はﾗｳﾝﾄﾞﾛﾋﾞﾝ･ﾗﾝﾀﾞﾑが可能｡
+//������SW��P��CdS�������CVD�������\��A���߰Ċ����Ă��\�Ȃ��̡
+//���ꂼ���ٺްى��t��ׯ�������Đ����۸��щ����Đ��̊J�n����f�ɏ[�Ă邱�Ƃ��ł���
+//�Z�݂ŊJ�n����݂Œ��f����
+//�ȥ������׳������ݥ����т��\�
 
-//SWﾎﾟｰﾄの内部ﾌﾟﾙｱｯﾌﾟ/ﾀﾞｳﾝはこのｺｰﾄﾞ内で行っている｡
-//CVDﾎﾟｰﾄの内部ﾌﾟﾙﾀﾞｳﾝはfunc_CVD.cで行っている｡
+//SW�߰Ă̓�����ٱ���/�޳݂͂��̺��ޓ��ōs���Ă���
+//CVD�߰Ă̓�������޳݂�func_CVD.c�ōs���Ă���
 
-//下記のｵﾌﾟｼｮﾝ設定を呼出し元で宣言しておくこと｡
-//#define	SLEEP_EN	//Sleep機能を実装するときに宣言する
-//#define	KYOKU_AUTO	//ｵﾙｺﾞｰﾙ演奏を自動開始するときに宣言する
-//#define	ONSEIN_AUTO	//音声0再生を自動開始するときに宣言する
-//#define	ONSEII_AUTO	//音声I再生を自動開始するときに宣言する
-//#define	ONSEIC_AUTO	//音声C再生を自動開始するときに宣言する
-//#define	ONSEIS_AUTO	//音声S再生を自動開始するときに宣言する
-//#define	RAND_CHSEL	0x00000001	//ﾗﾝﾀﾞﾏｲｽﾞの種にするCHSEL(ﾃﾞﾌｫﾙﾄはCH0:PA0)
-//#define	KYOKU_RAND	//曲番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-//#define	ONSEIN_RAND	//音声N番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-//#define	ONSEII_RAND	//音声I番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-//#define	ONSEIC_RAND	//音声C番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-//#define	ONSEIS_RAND	//音声S番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-//#define	SW_EN		//SWを実装するときに宣言する
-//#define	SW_PLNG		//SWをｲﾍﾞﾝﾄではなく､ﾎﾟｰﾘﾝｸﾞするときに宣言する
-//#define	CdS_EN		//CdSを実装するときに宣言する
-//#define	CVD_EN		//CVDを実装するときに宣言する
-
-
-//==============================================
-//構成情報(個別ｱﾌﾟﾘｹｰｼｮﾝだけで使うもの)
-//==============================================
-#define	SLEEP_TMR	1000			//Sleepに入る前の時限[ms]
-						//　操作の評価時間よりも長くすること
-#define	LED_TMR		256			//LED点滅周期[固有処理ｺｰﾊﾞｯｸ周期]
+//���L�̵�߼�ݐݒ���ďo�����Ő錾���Ă������ơ
+//#define	SLEEP_EN	//Sleep�@�\����������Ƃ��ɐ錾����
+//#define	KYOKU_AUTO	//�ٺްى��t�������J�n����Ƃ��ɐ錾����
+//#define	ONSEIN_AUTO	//����0�Đ��������J�n����Ƃ��ɐ錾����
+//#define	ONSEII_AUTO	//����I�Đ��������J�n����Ƃ��ɐ錾����
+//#define	ONSEIC_AUTO	//����C�Đ��������J�n����Ƃ��ɐ錾����
+//#define	ONSEIS_AUTO	//����S�Đ��������J�n����Ƃ��ɐ錾����
+//#define	RAND_CHSEL	0x00000001	//����ϲ�ނ̎�ɂ���CHSEL(��̫�Ă�CH0:PA0)
+//#define	KYOKU_RAND	//�Ȕԍ�������ϲ�ނ���Ƃ��ɐ錾����
+//#define	ONSEIN_RAND	//����N�ԍ�������ϲ�ނ���Ƃ��ɐ錾����
+//#define	ONSEII_RAND	//����I�ԍ�������ϲ�ނ���Ƃ��ɐ錾����
+//#define	ONSEIC_RAND	//����C�ԍ�������ϲ�ނ���Ƃ��ɐ錾����
+//#define	ONSEIS_RAND	//����S�ԍ�������ϲ�ނ���Ƃ��ɐ錾����
+//#define	SW_EN		//SW����������Ƃ��ɐ錾����
+//#define	SW_PLNG		//SW�����Ăł͂Ȃ���߰�ݸނ���Ƃ��ɐ錾����
+//#define	CdS_EN		//CdS����������Ƃ��ɐ錾����
+//#define	CVD_EN		//CVD����������Ƃ��ɐ錾����
 
 
 //==============================================
-//操作のﾋﾞｯﾄ定義
+//�\�����(�ʱ��ع���݂����Ŏg������)
 //==============================================
-#define	ORGEL_CNT	0x80		//ｵﾙｺﾞｰﾙ操作
-#define	VOICEN_CNT	0x40		//音声N操作
-#define	NON_CNT		0x00		//操作無し
+#define	SLEEP_TMR	1000			//Sleep�ɓ���O�̎���[ms]
+						//�@����̕]�����Ԃ����������邱��
+#define	LED_TMR		256			//LED�_�Ŏ���[�ŗL�������ޯ�����]
 
 
-#ifdef SW_EN				//SWを実装するとき
 //==============================================
-//SW構成の定義
+//������ޯĒ�`
 //==============================================
-#define	SW_MODE	0x80			//ﾓｰﾄﾞ設定ﾏｽｸ
-#define	SW_POL	0x40			//極性設定ﾏｽｸ
+#define	ORGEL_CNT	0x80		//�ٺްّ���
+#define	VOICEN_CNT	0x40		//����N����
+#define	NON_CNT		0x00		//���얳��
+
+
+#ifdef SW_EN				//SW����������Ƃ�
+//==============================================
+//SW�\���̒�`
+//==============================================
+#define	SW_MODE	0x80			//Ӱ�ސݒ�Ͻ�
+#define	SW_POL	0x40			//�ɐ��ݒ�Ͻ�
 static const struct SW_CNF
 {
-	GPIO_TypeDef *gpio;		//GPIOｱﾄﾞﾚｽ
-	unsigned short msk;		//ﾋﾞｯﾄﾏｽｸ
-	unsigned char mode;		//b7:ﾓｰﾄﾞ(0=ﾘｱﾙﾓｰﾄﾞ､1=ﾀｲﾏｰﾓｰﾄﾞ)
-					//b6:入力極性(0=負論理､1=正論理)
+	GPIO_TypeDef *gpio;		//GPIO���ڽ
+	unsigned short msk;		//�ޯ�Ͻ�
+	unsigned char mode;		//b7:Ӱ��(0=ر�Ӱ�ޤ1=��ϰӰ��)
+					//b6:���͋ɐ�(0=���_���1=���_��)
 }sw_cnf[]=
 {
 
-//SW0の構成-------------------------------------
-#ifdef SW0_BIT				//SW0を実装するとき
+//SW0�̍\��-------------------------------------
+#ifdef SW0_BIT				//SW0����������Ƃ�
 #ifdef SW0_TIMER
 #define SW0_MODE SW_MODE
 #define SW_TIMER
@@ -123,7 +123,7 @@ static const struct SW_CNF
 #define SW0_EXTICR4	(SW0_EXTI_PORT<<(SW0_BIT-12)*8)
 #endif
 #define SW0_EXTIMSK	(1<<SW0_BIT)
-#else					//SW0を実装しないとき
+#else					//SW0���������Ȃ��Ƃ�
 #define SW0_EXTICR1	0x00000000
 #define SW0_EXTICR2	0x00000000
 #define SW0_EXTICR3	0x00000000
@@ -131,8 +131,8 @@ static const struct SW_CNF
 #define SW0_EXTIMSK	0x00000000
 #endif
 
-//SW1の構成-------------------------------------
-#ifdef SW1_BIT				//SW1を実装するとき
+//SW1�̍\��-------------------------------------
+#ifdef SW1_BIT				//SW1����������Ƃ�
 #ifdef SW1_TIMER
 #define SW1_MODE SW_MODE
 #define SW_TIMER
@@ -169,7 +169,7 @@ static const struct SW_CNF
 #define SW1_EXTICR4	(SW1_EXTI_PORT<<(SW1_BIT-12)*8)
 #endif
 #define SW1_EXTIMSK	(1<<SW1_BIT)
-#else					//SW1を実装しないとき
+#else					//SW1���������Ȃ��Ƃ�
 #define SW1_EXTICR1	0x00000000
 #define SW1_EXTICR2	0x00000000
 #define SW1_EXTICR3	0x00000000
@@ -177,8 +177,8 @@ static const struct SW_CNF
 #define SW1_EXTIMSK	0x00000000
 #endif
 
-//SW2の構成-------------------------------------
-#ifdef SW2_BIT				//SW2を実装するとき
+//SW2�̍\��-------------------------------------
+#ifdef SW2_BIT				//SW2����������Ƃ�
 #ifdef SW2_TIMER
 #define SW2_MODE SW_MODE
 #define SW_TIMER
@@ -215,7 +215,7 @@ static const struct SW_CNF
 #define SW2_EXTICR4	(SW2_EXTI_PORT<<(SW2_BIT-12)*8)
 #endif
 #define SW2_EXTIMSK	(1<<SW2_BIT)
-#else					//SW2を実装しないとき
+#else					//SW2���������Ȃ��Ƃ�
 #define SW2_EXTICR1	0x00000000
 #define SW2_EXTICR2	0x00000000
 #define SW2_EXTICR3	0x00000000
@@ -223,8 +223,8 @@ static const struct SW_CNF
 #define SW2_EXTIMSK	0x00000000
 #endif
 
-//SW3の構成-------------------------------------
-#ifdef SW3_BIT				//SW3を実装するとき
+//SW3�̍\��-------------------------------------
+#ifdef SW3_BIT				//SW3����������Ƃ�
 #ifdef SW3_TIMER
 #define SW3_MODE SW_MODE
 #define SW_TIMER
@@ -261,7 +261,7 @@ static const struct SW_CNF
 #define SW3_EXTICR4	(SW3_EXTI_PORT<<(SW3_BIT-12)*8)
 #endif
 #define SW3_EXTIMSK	(1<<SW3_BIT)
-#else					//SW3を実装しないとき
+#else					//SW3���������Ȃ��Ƃ�
 #define SW3_EXTICR1	0x00000000
 #define SW3_EXTICR2	0x00000000
 #define SW3_EXTICR3	0x00000000
@@ -269,8 +269,8 @@ static const struct SW_CNF
 #define SW3_EXTIMSK	0x00000000
 #endif
 
-//SW4の構成-------------------------------------
-#ifdef SW4_BIT				//SW4を実装するとき
+//SW4�̍\��-------------------------------------
+#ifdef SW4_BIT				//SW4����������Ƃ�
 #ifdef SW4_TIMER
 #define SW4_MODE SW_MODE
 #define SW_TIMER
@@ -307,7 +307,7 @@ static const struct SW_CNF
 #define SW4_EXTICR4	(SW4_EXTI_PORT<<(SW4_BIT-12)*8)
 #endif
 #define SW4_EXTIMSK	(1<<SW4_BIT)
-#else					//SW4を実装しないとき
+#else					//SW4���������Ȃ��Ƃ�
 #define SW4_EXTICR1	0x00000000
 #define SW4_EXTICR2	0x00000000
 #define SW4_EXTICR3	0x00000000
@@ -315,8 +315,8 @@ static const struct SW_CNF
 #define SW4_EXTIMSK	0x00000000
 #endif
 
-//SW5の構成-------------------------------------
-#ifdef SW5_BIT				//SW5を実装するとき
+//SW5�̍\��-------------------------------------
+#ifdef SW5_BIT				//SW5����������Ƃ�
 #ifdef SW5_TIMER
 #define SW5_MODE SW_MODE
 #define SW_TIMER
@@ -353,7 +353,7 @@ static const struct SW_CNF
 #define SW5_EXTICR4	(SW5_EXTI_PORT<<(SW5_BIT-12)*8)
 #endif
 #define SW5_EXTIMSK	(1<<SW5_BIT)
-#else					//SW5を実装しないとき
+#else					//SW5���������Ȃ��Ƃ�
 #define SW5_EXTICR1	0x00000000
 #define SW5_EXTICR2	0x00000000
 #define SW5_EXTICR3	0x00000000
@@ -361,8 +361,8 @@ static const struct SW_CNF
 #define SW5_EXTIMSK	0x00000000
 #endif
 
-//SW6の構成-------------------------------------
-#ifdef SW6_BIT				//SW6を実装するとき
+//SW6�̍\��-------------------------------------
+#ifdef SW6_BIT				//SW6����������Ƃ�
 #ifdef SW6_TIMER
 #define SW6_MODE SW_MODE
 #define SW_TIMER
@@ -399,7 +399,7 @@ static const struct SW_CNF
 #define SW6_EXTICR4	(SW6_EXTI_PORT<<(SW6_BIT-12)*8)
 #endif
 #define SW6_EXTIMSK	(1<<SW6_BIT)
-#else					//SW6を実装しないとき
+#else					//SW6���������Ȃ��Ƃ�
 #define SW6_EXTICR1	0x00000000
 #define SW6_EXTICR2	0x00000000
 #define SW6_EXTICR3	0x00000000
@@ -407,8 +407,8 @@ static const struct SW_CNF
 #define SW6_EXTIMSK	0x00000000
 #endif
 
-//SW7の構成-------------------------------------
-#ifdef SW7_BIT				//SW7を実装するとき
+//SW7�̍\��-------------------------------------
+#ifdef SW7_BIT				//SW7����������Ƃ�
 #ifdef SW7_TIMER
 #define SW7_MODE SW_MODE
 #define SW_TIMER
@@ -445,7 +445,7 @@ static const struct SW_CNF
 #define SW7_EXTICR4	(SW7_EXTI_PORT<<(SW7_BIT-12)*8)
 #endif
 #define SW7_EXTIMSK	(1<<SW7_BIT)
-#else					//SW7を実装しないとき
+#else					//SW7���������Ȃ��Ƃ�
 #define SW7_EXTICR1	0x00000000
 #define SW7_EXTICR2	0x00000000
 #define SW7_EXTICR3	0x00000000
@@ -454,7 +454,7 @@ static const struct SW_CNF
 #endif
 };
 
-//EXTICR設定値
+//EXTICR�ݒ�l
 #define SW_EXTICR1	(SW0_EXTICR1|SW1_EXTICR1|SW2_EXTICR1|SW3_EXTICR1|\
 			SW4_EXTICR1|SW5_EXTICR1|SW6_EXTICR1|SW7_EXTICR1)
 #define SW_EXTICR2	(SW0_EXTICR2|SW1_EXTICR2|SW2_EXTICR2|SW3_EXTICR2|\
@@ -466,41 +466,41 @@ static const struct SW_CNF
 #define SW_EXTIMSK	(SW0_EXTIMSK|SW1_EXTIMSK|SW2_EXTIMSK|SW3_EXTIMSK|\
 			SW4_EXTIMSK|SW5_EXTIMSK|SW6_EXTIMSK|SW7_EXTIMSK)
 
-//SWの実装数
+//SW�̎�����
 #define	SW_SU	(sizeof(sw_cnf)/sizeof(sw_cnf[0]))
 
 
 //==============================================
-//SW操作の定義
+//SW����̒�`
 //==============================================
-static const unsigned char sw_cnt[]=		//ｱﾌﾟﾘ制御情報
+static const unsigned char sw_cnt[]=		//���ؐ�����
 {
 
-//SW0の操作-------------------------------------
+//SW0�̑���-------------------------------------
 #ifdef SW0_BIT
 	SW0_CNT,
 #endif
 };
 
-#include "func_SW.c"				//SW評価ﾓｼﾞｭｰﾙを呼込む
+#include "func_SW.c"				//SW�]��Ӽޭ�ق��č���
 #endif
 
 
-#ifdef CVD_EN				//CVDを実装するとき
+#ifdef CVD_EN				//CVD����������Ƃ�
 //==============================================
-//CVD構成の定義
+//CVD�\���̒�`
 //==============================================
-#define	CVD_MODE	0x80			//ﾓｰﾄﾞ設定ﾏｽｸ
+#define	CVD_MODE	0x80			//Ӱ�ސݒ�Ͻ�
 static const struct CVD_CNF
 {
-	GPIO_TypeDef *gpio;			//GPIOｱﾄﾞﾚｽ
-	unsigned short chsel;			//CHSELﾏｽｸ/ANIN番号
-	unsigned char mode;			//b7:ﾓｰﾄﾞ(0=ﾘｱﾙﾓｰﾄﾞ､1=ﾀｲﾏｰﾓｰﾄﾞ)
-						//b3-b0:ﾋﾞｯﾄ番号
+	GPIO_TypeDef *gpio;			//GPIO���ڽ
+	unsigned short chsel;			//CHSELϽ�/ANIN�ԍ�
+	unsigned char mode;			//b7:Ӱ��(0=ر�Ӱ�ޤ1=��ϰӰ��)
+						//b3-b0:�ޯĔԍ�
 }cvd_cnf[]=
 {
 
-//CVD0の構成-------------------------------------
+//CVD0�̍\��-------------------------------------
 #ifdef CVD0_BIT
 #ifdef CVD0_TIMER
 #define CVD0_MODE CVD_MODE
@@ -513,7 +513,7 @@ static const struct CVD_CNF
 	{CVD0_GPIO,CVD0_CHSEL,CVD0_MODE|CVD0_BIT},
 #endif
 
-//CVD1の構成-------------------------------------
+//CVD1�̍\��-------------------------------------
 #ifdef CVD1_BIT
 #ifdef CVD1_TIMER
 #define CVD1_MODE CVD_MODE
@@ -526,7 +526,7 @@ static const struct CVD_CNF
 	{CVD1_GPIO,CVD1_CHSEL,CVD1_MODE|CVD1_BIT},
 #endif
 
-//CVD2の構成-------------------------------------
+//CVD2�̍\��-------------------------------------
 #ifdef CVD2_BIT
 #ifdef CVD2_TIMER
 #define CVD2_MODE CVD_MODE
@@ -539,7 +539,7 @@ static const struct CVD_CNF
 	{CVD2_GPIO,CVD2_CHSEL,CVD2_MODE|CVD2_BIT},
 #endif
 
-//CVD3の構成-------------------------------------
+//CVD3�̍\��-------------------------------------
 #ifdef CVD3_BIT
 #ifdef CVD3_TIMER
 #define CVD3_MODE CVD_MODE
@@ -552,7 +552,7 @@ static const struct CVD_CNF
 	{CVD3_GPIO,CVD3_CHSEL,CVD3_MODE|CVD3_BIT},
 #endif
 
-//CVD4の構成-------------------------------------
+//CVD4�̍\��-------------------------------------
 #ifdef CVD4_BIT
 #ifdef CVD4_TIMER
 #define CVD4_MODE CVD_MODE
@@ -565,7 +565,7 @@ static const struct CVD_CNF
 	{CVD4_GPIO,CVD4_CHSEL,CVD4_MODE|CVD4_BIT},
 #endif
 
-//CVD5の構成-------------------------------------
+//CVD5�̍\��-------------------------------------
 #ifdef CVD5_BIT
 #ifdef CVD5_TIMER
 #define CVD5_MODE CVD_MODE
@@ -580,30 +580,30 @@ static const struct CVD_CNF
 };
 
 #define	CVD_SU	(sizeof(cvd_cnf)/sizeof(cvd_cnf[0]))
-						//CVDの実装数
+						//CVD�̎�����
 
 
 //==============================================
-//CVD操作の定義
+//CVD����̒�`
 //==============================================
-static const unsigned char cvd_cnt[]=		//ｱﾌﾟﾘ制御情報
+static const unsigned char cvd_cnt[]=		//���ؐ�����
 {
 
-//CVD0の操作-------------------------------------
+//CVD0�̑���-------------------------------------
 #ifdef CVD0_BIT
 	CVD0_CNT,
 #endif
 };
 
-#include "func_CVD.c"				//CVD評価ﾓｼﾞｭｰﾙを呼込む
+#include "func_CVD.c"				//CVD�]��Ӽޭ�ق��č���
 #endif
 
 
 //==============================================
-//固有の作業域
+//�ŗL�̍�ƈ�
 //==============================================
-#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//どれかでﾗﾝﾀﾞﾑが必要なとき
-static unsigned char rand_x;			//ﾗﾝﾀﾞﾏｲｽﾞの種
+#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//�ǂꂩ������т��K�v�ȂƂ�
+static unsigned char rand_x;			//����ϲ�ނ̎�
 #endif
 #if PART_N>0
 static unsigned char kyoku;
@@ -637,12 +637,12 @@ static unsigned char onseiS_rand_msk;
 #endif
 
 
-#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//どれかでﾗﾝﾀﾞﾑが必要なとき
+#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//�ǂꂩ������т��K�v�ȂƂ�
 //==============================================
-//ﾗﾝﾀﾞﾏｲｽﾞのﾋﾞｯﾄﾏｽｸﾊﾟﾀｰﾝを計算する
+//����ϲ�ނ��ޯ�Ͻ�����݂��v�Z����
 //==============================================
 static unsigned char rand_msk(
-	unsigned char no)			//実装数
+	unsigned char no)			//������
 {
 //DBG_C('\n');
 //DBG_C('p');
@@ -658,7 +658,7 @@ static unsigned char rand_msk(
 
 
 //==============================================
-//ﾗﾝﾀﾞﾏｲｽﾞ
+//����ϲ��
 //==============================================
 static unsigned char rand(void)
 {
@@ -672,7 +672,7 @@ static unsigned char rand(void)
 
 
 //==============================================
-//ｱﾌﾟﾘの初期設定
+//���؂̏����ݒ�
 //==============================================
 static void apl_init(void)
 {
@@ -680,19 +680,19 @@ static void apl_init(void)
 //DBG_C('\n');
 //DBG_C('$');
 
-	//ﾗﾝﾀﾞﾏｲｽﾞの種
-#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//どれかでﾗﾝﾀﾞﾑが必要なとき
+	//����ϲ�ނ̎�
+#if defined(KYOKU_RAND)||defined(ONSEIN_RAND)||defined(ONSEII_RAND)||defined(ONSEIC_RAND)||defined(ONSEIS_RAND)	//�ǂꂩ������т��K�v�ȂƂ�
  //DBG_C('r');
-	ADC1->SMPR=ADC_SMPR_SMP_Msk;		//ｻﾝﾌﾟﾘﾝｸﾞ時間は最大値(239.5ADCｸﾛｯｸｻｲｸﾙ=17us)
-	ADC1->CHSELR=(uint32_t)RAND_CHSEL;	//変換chを設定する
-	ADC1->CR|=ADC_CR_ADEN;			//ADC有効
-	ADC1->CR|=ADC_CR_ADSTART;		//変換開始
-	while(!(ADC1->ISR&ADC_ISR_EOC));	//変換完了を待つ
-	rand_x=ADC1->DR;			//変換結果の下位8ﾋﾞｯﾄを種にする
+	ADC1->SMPR=ADC_SMPR_SMP_Msk;		//�����ݸގ��Ԃ͍ő�l(239.5ADC�ۯ�����=17us)
+	ADC1->CHSELR=(uint32_t)RAND_CHSEL;	//�ϊ�ch��ݒ肷��
+	ADC1->CR|=ADC_CR_ADEN;			//ADC�L��
+	ADC1->CR|=ADC_CR_ADSTART;		//�ϊ��J�n
+	while(!(ADC1->ISR&ADC_ISR_EOC));	//�ϊ�������҂�
+	rand_x=ADC1->DR;			//�ϊ����ʂ̉���8�ޯĂ���ɂ���
 //DBG_C('\n');
 //DBG_S(ADC1->DR);
 
-	//ﾗﾝﾀﾞﾏｲｽﾞのﾋﾞｯﾄﾏｽｸﾊﾟﾀｰﾝ設定
+	//����ϲ�ނ��ޯ�Ͻ�����ݐݒ�
 #if (PART_N>0)&&defined(KYOKU_RAND)
 	kyoku_rand_msk=rand_msk(SONG_IDX.no);
 //DBG_B(kyoku_rand_msk);
@@ -715,103 +715,103 @@ static void apl_init(void)
 #endif
 #endif
 
-	//LEDﾎﾟｰﾄ設定
-#ifdef LED0_BIT				//LED0を実装するとき
-	GPIO_OUT(LED0_GPIO,LED0_BIT);		//出力ﾓｰﾄﾞ
+	//LED�߰Đݒ�
+#ifdef LED0_BIT				//LED0����������Ƃ�
+	GPIO_OUT(LED0_GPIO,LED0_BIT);		//�o��Ӱ��
 #endif
-#ifdef LED1_BIT				//LED1を実装するとき
-	GPIO_OUT(LED1_GPIO,LED1_BIT);		//出力ﾓｰﾄﾞ
+#ifdef LED1_BIT				//LED1����������Ƃ�
+	GPIO_OUT(LED1_GPIO,LED1_BIT);		//�o��Ӱ��
 #endif
 
-	//SWﾎﾟｰﾄ設定
+	//SW�߰Đݒ�
 //DBG_C('p');
-#ifdef SW_EN				//SWを実装するとき
+#ifdef SW_EN				//SW����������Ƃ�
 	RCC->APBENR2|=RCC_APBENR2_SYSCFGEN;
-					//SYSCFGにｸﾛｯｸ供給
-#ifdef SW0_BIT				//SW0を実装するとき
-#ifdef SW0_INV				//負論理のとき
-	GPIO_INPU(SW0_GPIO,SW0_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW0_GPIO,SW0_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+					//SYSCFG�ɸۯ�����
+#ifdef SW0_BIT				//SW0����������Ƃ�
+#ifdef SW0_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW0_GPIO,SW0_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW0_GPIO,SW0_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW1_BIT				//SW1を実装するとき
-#ifdef SW1_INV				//負論理のとき
-	GPIO_INPU(SW1_GPIO,SW1_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW1_GPIO,SW1_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW1_BIT				//SW1����������Ƃ�
+#ifdef SW1_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW1_GPIO,SW1_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW1_GPIO,SW1_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW2_BIT				//SW2を実装するとき
-#ifdef SW2_INV				//負論理のとき
-	GPIO_INPU(SW2_GPIO,SW2_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW2_GPIO,SW2_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW2_BIT				//SW2����������Ƃ�
+#ifdef SW2_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW2_GPIO,SW2_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW2_GPIO,SW2_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW3_BIT				//SW3を実装するとき
-#ifdef SW3_INV				//負論理のとき
-	GPIO_INPU(SW3_GPIO,SW3_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW3_GPIO,SW3_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW3_BIT				//SW3����������Ƃ�
+#ifdef SW3_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW3_GPIO,SW3_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW3_GPIO,SW3_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW4_BIT				//SW4を実装するとき
-#ifdef SW4_INV				//負論理のとき
-	GPIO_INPU(SW4_GPIO,SW4_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW4_GPIO,SW4_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW4_BIT				//SW4����������Ƃ�
+#ifdef SW4_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW4_GPIO,SW4_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW4_GPIO,SW4_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW5_BIT				//SW5を実装するとき
-#ifdef SW5_INV				//負論理のとき
-	GPIO_INPU(SW5_GPIO,SW5_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW5_GPIO,SW5_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW5_BIT				//SW5����������Ƃ�
+#ifdef SW5_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW5_GPIO,SW5_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW5_GPIO,SW5_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW6_BIT				//SW6を実装するとき
-#ifdef SW6_INV				//負論理のとき
-	GPIO_INPU(SW6_GPIO,SW6_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW6_GPIO,SW6_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW6_BIT				//SW6����������Ƃ�
+#ifdef SW6_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW6_GPIO,SW6_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW6_GPIO,SW6_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
-#ifdef SW7_BIT				//SW7を実装するとき
-#ifdef SW7_INV				//負論理のとき
-	GPIO_INPU(SW7_GPIO,SW7_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙｱｯﾌﾟする
-#else					//正論理のとき
-	GPIO_INPD(SW7_GPIO,SW7_BIT);		//入力ﾓｰﾄﾞﾌﾟﾙﾀﾞｳﾝする
+#ifdef SW7_BIT				//SW7����������Ƃ�
+#ifdef SW7_INV				//���_���̂Ƃ�
+	GPIO_INPU(SW7_GPIO,SW7_BIT);		//����Ӱ����ٱ��߂���
+#else					//���_���̂Ƃ�
+	GPIO_INPD(SW7_GPIO,SW7_BIT);		//����Ӱ������޳݂���
 #endif
 #endif
 #endif
 
-#ifdef SLEEP_EN				//Sleepを実装するとき
-	//Wakeup設定
+#ifdef SLEEP_EN				//Sleep����������Ƃ�
+	//Wakeup�ݒ�
 #if defined(CdS_EN)||defined(CVD_EN)||defined(SW_PLNG)
-					//CdSかCVDを実装するとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞするときは
-					//　LPTIM割込みでWakeupする
+					//CdS��CVD����������Ƃ��
+					//�@SW���߰�ݸނ���Ƃ���
+					//�@LPTIM�����݂�Wakeup����
 
-	//LPTIM設定
-	RCC->CSR|=RCC_CSR_LSION;		//LSIｵﾝ
-	while(!(RCC->CSR&RCC_CSR_LSIRDY)){};	//LSIﾚﾃﾞｨを待つ
-	RCC->CCIPR|=RCC_CCIPR_LPTIMSEL_0;	//LPTIMｸﾛｯｸはLSI
-	RCC->APBENR1|=RCC_APBENR1_LPTIMEN;	//LPTIMにｸﾛｯｸ供給
-	LPTIM->IER|=LPTIM_IER_ARRMIE;		//LPTIM割込み許可
-	LPTIM->CR|=LPTIM_CR_ENABLE;		//LPTIM有効
-	LPTIM->ARR=32*32;			//周期は32ms
+	//LPTIM�ݒ�
+	RCC->CSR|=RCC_CSR_LSION;		//LSI��
+	while(!(RCC->CSR&RCC_CSR_LSIRDY)){};	//LSI��ި��҂�
+	RCC->CCIPR|=RCC_CCIPR_LPTIMSEL_0;	//LPTIM�ۯ���LSI
+	RCC->APBENR1|=RCC_APBENR1_LPTIMEN;	//LPTIM�ɸۯ�����
+	LPTIM->IER|=LPTIM_IER_ARRMIE;		//LPTIM�����݋���
+	LPTIM->CR|=LPTIM_CR_ENABLE;		//LPTIM�L��
+	LPTIM->ARR=32*32;			//������32ms
 //DBG_L(LPTIM->ARR);
-	NVIC->ISER[0]=(1<<LPTIM1_IRQn);		//LPTIM割込み許可
+	NVIC->ISER[0]=(1<<LPTIM1_IRQn);		//LPTIM�����݋���
 
-#else					//CdSもCVDも実装しないとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞしないときは
-					//　EXTI0～15(SW)割込みでWakeupする
+#else					//CdS��CVD���������Ȃ��Ƃ��
+					//�@SW���߰�ݸނ��Ȃ��Ƃ���
+					//�@EXTI0�`15(SW)�����݂�Wakeup����
 
 //DBG_C('s');
-#ifdef SW_EN				//SWを実装するとき
+#ifdef SW_EN				//SW����������Ƃ�
 
-	//EXTI設定
+	//EXTI�ݒ�
 #if SW_EXTICR1!=0x00000000
 	EXTI->EXTICR[0]=SW_EXTICR1;
 #endif
@@ -831,9 +831,9 @@ static void apl_init(void)
 //DBG_C('-');
 //DBG_L(EXTI->RTSR);
 	NVIC->ISER[0]=
-		(1<<EXTI0_1_IRQn)|		//EXTI0_1割込み許可
-		(1<<EXTI2_3_IRQn)|		//EXTI2_3割込み許可
-		(1<<EXTI4_15_IRQn);		//EXTI4_15割込み許可
+		(1<<EXTI0_1_IRQn)|		//EXTI0_1�����݋���
+		(1<<EXTI2_3_IRQn)|		//EXTI2_3�����݋���
+		(1<<EXTI4_15_IRQn);		//EXTI4_15�����݋���
 //DBG_C('-');
 //DBG_L(NVIC->ISER[0]);
 #endif
@@ -842,12 +842,12 @@ static void apl_init(void)
 }
 
 
-#ifdef	SLEEP_EN			//Sleep機能を実装するとき
+#ifdef	SLEEP_EN			//Sleep�@�\����������Ƃ�
 #if defined(CdS_EN)||defined(CVD_EN)||defined(SW_PLNG)
-					//CdSかCVDを実装するとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞするとき
+					//CdS��CVD����������Ƃ��
+					//�@SW���߰�ݸނ���Ƃ�
 //==============================================
-//LPTIM割込み処理
+//LPTIM�����ݏ���
 //==============================================
 void LPTIM1_IRQHandler(void)
 {
@@ -858,169 +858,169 @@ void LPTIM1_IRQHandler(void)
 }
 
 
-#else					//CdSもCVDも実装しないとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞしないとき
+#else					//CdS��CVD���������Ȃ��Ƃ��
+					//�@SW���߰�ݸނ��Ȃ��Ƃ�
 //==============================================
-//EXTI割込みﾊﾝﾄﾞﾗ
+//EXTI�����������
 //==============================================
 void EXTI0_1_IRQHandler(void)
 {
 
-	EXTI->PR=0x00000003;			//EXTI0-1割込みﾌﾗｸﾞをｸﾘｱする
+	EXTI->PR=0x00000003;			//EXTI0-1�������׸ނ�ر����
 }
 
 void EXTI2_3_IRQHandler(void)
 {
 
-	EXTI->PR=0x0000000c;			//EXTI2-3割込みﾌﾗｸﾞをｸﾘｱする
+	EXTI->PR=0x0000000c;			//EXTI2-3�������׸ނ�ر����
 }
 
 void EXTI4_15_IRQHandler(void)
 {
 
-	EXTI->PR=0x0000fff0;			//EXTI4-115割込みﾌﾗｸﾞをｸﾘｱする
+	EXTI->PR=0x0000fff0;			//EXTI4-115�������׸ނ�ر����
 }
 #endif
 
 
 //==============================================
-//Sleep処理
+//Sleep����
 //==============================================
 static void apl_sleep(void)
 {
 #if defined(CdS_EN)||defined(CVD_EN)||defined(SW_PLNG)
-					//CdSかCVDを実装するとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞするとき
+					//CdS��CVD����������Ƃ��
+					//�@SW���߰�ݸނ���Ƃ�
 	unsigned char n;
 #endif
 
 //DBG_C('\n');
 //DBG_C('<');
 
-	//LED消灯
-#ifdef LED0_BIT				//LED0を実装するとき
-	GPIO_L(LED0_GPIO,LED0_BIT);		//消灯する
+	//LED����
+#ifdef LED0_BIT				//LED0����������Ƃ�
+	GPIO_L(LED0_GPIO,LED0_BIT);		//��������
 #endif
-#ifdef LED1_BIT				//LED1を実装するとき
-	GPIO_L(LED1_GPIO,LED1_BIT);		//消灯する
+#ifdef LED1_BIT				//LED1����������Ƃ�
+	GPIO_L(LED1_GPIO,LED1_BIT);		//��������
 #endif
-#ifdef LED2_BIT				//LED2を実装するとき
-	GPIO_L(LED2_GPIO,LED2_BIT);		//消灯する
+#ifdef LED2_BIT				//LED2����������Ƃ�
+	GPIO_L(LED2_GPIO,LED2_BIT);		//��������
 #endif
-#ifdef LED3_BIT				//LED3を実装するとき
-	GPIO_L(LED3_GPIO,LED3_BIT);		//消灯する
+#ifdef LED3_BIT				//LED3����������Ƃ�
+	GPIO_L(LED3_GPIO,LED3_BIT);		//��������
 #endif
-#ifdef LED4_BIT				//LED4を実装するとき
-	GPIO_L(LED4_GPIO,LED4_BIT);		//消灯する
+#ifdef LED4_BIT				//LED4����������Ƃ�
+	GPIO_L(LED4_GPIO,LED4_BIT);		//��������
 #endif
-#ifdef LED5_BIT				//LED5を実装するとき
-	GPIO_L(LED5,GPIO,LED5_BIT);		//消灯する
+#ifdef LED5_BIT				//LED5����������Ƃ�
+	GPIO_L(LED5,GPIO,LED5_BIT);		//��������
 #endif
-#ifdef LED6_BIT				//LED6を実装するとき
-	GPIO_L(LED6_GPIO,LED6_BIT);		//消灯する
+#ifdef LED6_BIT				//LED6����������Ƃ�
+	GPIO_L(LED6_GPIO,LED6_BIT);		//��������
 #endif
 
-#if VOICE_S>0				//音声S再生を実装するとき
-	//W25をﾊﾟﾜｰﾀﾞｳﾝ
+#if VOICE_S>0				//����S�Đ�����������Ƃ�
+	//W25����ܰ�޳�
 //DBG_C('a');
-	W25_PWR_DOWN();				//W25をﾊﾟﾜｰﾀﾞｳﾝする
+	W25_PWR_DOWN();				//W25����ܰ�޳݂���
 #endif
 
-	//SPIをﾘｾｯﾄ
-#if VOICE_C+VOICE_S>0			//SPIを使うとき
+	//SPI��ؾ��
+#if VOICE_C+VOICE_S>0			//SPI���g���Ƃ�
 //DBG_C('b');
-	spi_reset();				//SPIﾎﾟｰﾄをﾘｾｯﾄする
+	spi_reset();				//SPI�߰Ă�ؾ�Ă���
 #endif
 
-	//PWMを停止
+	//PWM���~
 //DBG_C('c');
-	dev_pwm_stop();				//PWMを停止する
+	dev_pwm_stop();				//PWM���~����
 
-	//Sleep処理
+	//Sleep����
 #if defined(CdS_EN)||defined(CVD_EN)||defined(SW_PLNG)
-					//CdSかCVDを実装するとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞするときは
-					//　LPTIM割込みでWakeupする
+					//CdS��CVD����������Ƃ��
+					//�@SW���߰�ݸނ���Ƃ���
+					//�@LPTIM�����݂�Wakeup����
 	for(;;)
 	{
 //DBG_C('d');
-		//SLEEPDEEPﾓｰﾄﾞへ移行
+		//SLEEPDEEPӰ�ނֈڍs
 //DBG_SYNC();
 //DBS_H;
-		//AWU設定
-		LPTIM->CR|=LPTIM_CR_SNGSTRT;	//ｶｳﾝﾄ開始
+		//AWU�ݒ�
+		LPTIM->CR|=LPTIM_CR_SNGSTRT;	//���ĊJ�n
 
-		//低電力設定
+		//��d�͐ݒ�
 		PWR->CR1|=PWR_CR1_LPR|PWR_CR1_VOS|PWR_CR1_MRRDY_TIME_Msk;
-						//ﾚｷﾞｭﾚｰﾀを低電力､VDD=1.0V､MRRDY_TIMEは5us
-		RCC->CFGR=0x00000000;		//SYSCLKはHSI
+						//ڷޭڰ����d�ͤVDD=1.0V�MRRDY_TIME��5us
+		RCC->CFGR=0x00000000;		//SYSCLK��HSI
 DBS_H;
-		__WFI();			//SLEEPDEEPﾓｰﾄﾞへ移行
-		SystemInit();			//ｼｽﾃﾑｸﾛｯｸを再設定する
+		__WFI();			//SLEEPDEEPӰ�ނֈڍs
+		SystemInit();			//���Ѹۯ����Đݒ肷��
 //DBS_L;
 		wait_us(80);
 //DBG_C('e');
 
-#ifdef SW_EN				//SWを実装するとき
-		//SWを評価する
+#ifdef SW_EN				//SW����������Ƃ�
+		//SW��]������
 //DBG_C('f');
 		for(n=0;n<SW_SU;n++)
 		{
-			if(sw_read(n,1)) break;	//操作を検知したら抜ける
+			if(sw_read(n,1)) break;	//��������m�����甲����
 		}
 		if(n<SW_SU) break;
 #endif
 
-#ifdef CVD_EN				//CVDを実装するとき
-		//CVDを評価する
+#ifdef CVD_EN				//CVD����������Ƃ�
+		//CVD��]������
 //DBG_C('h');
 		for(n=0;n<CVD_SU;n++)
 		{
-			if(cvd_read(n,1)) break;//操作を検知したら抜ける
+			if(cvd_read(n,1)) break;//��������m�����甲����
 		}
 		if(n<CVD_SU) break;
 #endif
 	}
 
-#else					//CdSもCVDも実装しないとき､
-					//　SWをﾎﾟｰﾘﾝｸﾞしないときは
-					//　EXTI0～15(SW)割込みでWakeupする
+#else					//CdS��CVD���������Ȃ��Ƃ��
+					//�@SW���߰�ݸނ��Ȃ��Ƃ���
+					//�@EXTI0�`15(SW)�����݂�Wakeup����
 //DBG_C('i');
 //DBG_SYNC();
 
-	//STOPﾓｰﾄﾞへ移行
-	EXTI->IMR=SW_EXTIMSK;			//EXTI割込み許可
+	//STOPӰ�ނֈڍs
+	EXTI->IMR=SW_EXTIMSK;			//EXTI�����݋���
 
-	//低電力設定
+	//��d�͐ݒ�
 	PWR->CR1|=PWR_CR1_LPR|PWR_CR1_VOS|PWR_CR1_MRRDY_TIME_Msk;
-						//ﾚｷﾞｭﾚｰﾀを低電力､VDD=1.0V､MRRDY_TIMEは5us
-	RCC->CFGR=0x00000000;			//SYSCLKはHSI
-	__WFI();				//STOPﾓｰﾄﾞへ移行
-	EXTI->IMR=0x00000000;			//EXTI割込み禁止
-	SystemInit();				//ｼｽﾃﾑｸﾛｯｸを再設定する
+						//ڷޭڰ����d�ͤVDD=1.0V�MRRDY_TIME��5us
+	RCC->CFGR=0x00000000;			//SYSCLK��HSI
+	__WFI();				//STOPӰ�ނֈڍs
+	EXTI->IMR=0x00000000;			//EXTI�����݋֎~
+	SystemInit();				//���Ѹۯ����Đݒ肷��
 //DBG_C('j');
 #endif
 
-	//PWMを再稼働
+	//PWM���ĉғ�
 //DBG_C('k');
-	dev_pwm_start();			//PWMを開始する
+	dev_pwm_start();			//PWM���J�n����
 
-	//SPIをｾｯﾄ
-#if VOICE_C+VOICE_S>0			//SPIを使うとき
+	//SPI���
+#if VOICE_C+VOICE_S>0			//SPI���g���Ƃ�
 //DBG_C('l');
-	spi_set();				//SPIﾎﾟｰﾄをｾｯﾄする
+	spi_set();				//SPI�߰Ă�Ă���
 #endif
 
-	//SDを初期化
-#if VOICE_C>0				//音声C再生を実装するとき
+	//SD��������
+#if VOICE_C>0				//����C�Đ�����������Ƃ�
 //DBG_C('m');
-	mmsd_init();				//SDCを初期化する
+	mmsd_init();				//SDC������������
 #endif
 
-	//W25をﾊﾟﾜｰｱｯﾌﾟ
-#if VOICE_S>0				//音声S再生を実装するとき
+	//W25����ܰ����
+#if VOICE_S>0				//����S�Đ�����������Ƃ�
 //DBG_C('n');
-	W25_PWR_UP();				//W25をﾊﾟﾜｰｱｯﾌﾟする
+	W25_PWR_UP();				//W25����ܰ���߂���
 #endif
 //DBG_C('>');
 }
@@ -1028,228 +1028,228 @@ DBS_H;
 
 
 //==============================================
-//固有の処理(ｺｰﾙﾊﾞｯｸ関数)
+//�ŗL�̏���(����ޯ��֐�)
 //==============================================
 static void CB_KOYUU(void)
 {
-#ifdef SLEEP_EN				//Sleep機能を実装するとき
-	static unsigned short sleep_tmr=0;	//Sleepﾀｲﾏｰ
+#ifdef SLEEP_EN				//Sleep�@�\����������Ƃ�
+	static unsigned short sleep_tmr=0;	//Sleep��ϰ
 #endif
-#ifdef LED0_BIT				//LEDを実装するとき
-	static unsigned char led_tmr;		//LED点滅ﾀｲﾏｰ
-	static unsigned char led_sts;		//LED点滅状態(0=消灯､1=点灯)
+#ifdef LED0_BIT				//LED����������Ƃ�
+	static unsigned char led_tmr;		//LED�_����ϰ
+	static unsigned char led_sts;		//LED�_�ŏ��(0=�����1=�_��)
 #endif
 	unsigned char res,cnt,n;
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
+#if PART_N>0				//�ٺްى��t����������Ƃ�
 	struct SONG_IDX *p;
 #endif
 
-	//稼働ﾁｪｯｸ
-#ifdef SLEEP_EN				//Sleep機能を実装するとき
+	//�ғ�����
+#ifdef SLEEP_EN				//Sleep�@�\����������Ƃ�
 //DBG_C('e');
-	res=0;					//仮に非稼働にしておく
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
-	res|=song.no;				//稼働しているときは稼働中の設定
+	res=0;					//���ɔ�ғ��ɂ��Ă���
+#if PART_N>0				//�ٺްى��t����������Ƃ�
+	res|=song.no;				//�ғ����Ă���Ƃ��͉ғ����̐ݒ�
 #endif
-#if VOICE_N>0				//音声N再生を実装するとき
-	res|=voiceN[0].no;			//稼働しているときは稼働中の設定
+#if VOICE_N>0				//����N�Đ�����������Ƃ�
+	res|=voiceN[0].no;			//�ғ����Ă���Ƃ��͉ғ����̐ݒ�
 #endif
-#if VOICE_I>0				//音声I再生を実装するとき
-	res|=voiceI.no;				//稼働しているときは稼働中の設定
+#if VOICE_I>0				//����I�Đ�����������Ƃ�
+	res|=voiceI.no;				//�ғ����Ă���Ƃ��͉ғ����̐ݒ�
 #endif
-#if VOICE_C>0				//音声C再生を実装するとき
-	res|=voiceC.no;				//稼働しているときは稼働中の設定
+#if VOICE_C>0				//����C�Đ�����������Ƃ�
+	res|=voiceC.no;				//�ғ����Ă���Ƃ��͉ғ����̐ݒ�
 #endif
-#if VOICE_S>0				//音声S再生を実装するとき
-	res|=voiceS[0].no;			//稼働しているときは稼働中の設定
+#if VOICE_S>0				//����S�Đ�����������Ƃ�
+	res|=voiceS[0].no;			//�ғ����Ă���Ƃ��͉ғ����̐ݒ�
 #endif
 //DBG_B(res);
-	if(res)					//稼働しているときは
+	if(res)					//�ғ����Ă���Ƃ���
 	{
-		sleep_tmr=0;			//　Sleep時限をｸﾘｱする
+		sleep_tmr=0;			//�@Sleep������ر����
 
-#ifdef LED0_BIT				//LEDを実装するとき
-		//LED点滅
+#ifdef LED0_BIT				//LED����������Ƃ�
+		//LED�_��
 		if(led_tmr==0)
 		{
-			if(led_sts)		//点灯していたら
+			if(led_sts)		//�_�����Ă�����
 			{
-				led_sts=0;	//LED0消灯
+				led_sts=0;	//LED0����
 				GPIO_L(LED0_GPIO,LED0_BIT);
-#ifdef LED1_BIT				//LED1を実装するとき
+#ifdef LED1_BIT				//LED1����������Ƃ�
 				GPIO_H(LED1_GPIO,LED1_BIT);
-#endif					//LED1点灯
+#endif					//LED1�_��
 			}
-			else			//消灯していたら
+			else			//�������Ă�����
 
 			{
-				led_sts=1;	//LED0点灯
+				led_sts=1;	//LED0�_��
 				GPIO_H(LED0_GPIO,LED0_BIT);
-#ifdef LED1_BIT				//LED1を実装するとき
+#ifdef LED1_BIT				//LED1����������Ƃ�
 				GPIO_L(LED1_GPIO,LED1_BIT);
-#endif					//LED1消灯
+#endif					//LED1����
 			}
 		}
 		if(++led_tmr>LED_TMR/2/KOYUU_PR) led_tmr=0;
-						//LED点滅ﾀｲﾏｰ更新
+						//LED�_����ϰ�X�V
 #endif
 
-//		return;				//戻る
+//		return;				//�߂�
 
 	}
-	else					//稼働していないときは
+	else					//�ғ����Ă��Ȃ��Ƃ���
 	{
 //DBG_C('X');
-#ifdef LED0_BIT				//LED0を実装するとき
-		led_tmr=0;			//LED点滅ﾀｲﾏｰを初期化
-		led_sts=0;			//LED消灯
+#ifdef LED0_BIT				//LED0����������Ƃ�
+		led_tmr=0;			//LED�_����ϰ��������
+		led_sts=0;			//LED����
 		GPIO_L(LED0_GPIO,LED0_BIT);
-#ifdef LED1_BIT				//LED1を実装するとき
+#ifdef LED1_BIT				//LED1����������Ƃ�
 		GPIO_L(LED1_GPIO,LED1_BIT);
 #endif
 #endif
 //DBG_S(sleep_tmr);
 		if(++sleep_tmr>SLEEP_TMR/KOYUU_PR)
-						//　Sleep時限を超えたら
+						//�@Sleep�����𒴂�����
 		{
-			apl_sleep();		//　Sleepする
-			sleep_tmr=0;		//　Sleep時限をｸﾘｱする
+			apl_sleep();		//�@Sleep����
+			sleep_tmr=0;		//�@Sleep������ر����
 		}
 	}
 #endif
 
-	//操作ﾁｪｯｸ
-	res=0;					//仮に操作無しにしておく
-#ifdef SW_EN				//SWを実装するとき
+	//��������
+	res=0;					//���ɑ��얳���ɂ��Ă���
+#ifdef SW_EN				//SW����������Ƃ�
 //DBG_C('s');
-	if(!res)				//操作が無かったら
+	if(!res)				//���삪����������
 	{
-#if VOICE_S>0				//音声Sを実装するとき
-					//音声CはSPIを専有するのでﾘｾｯﾄ/ｾｯﾄできない
-		spi_reset();			//SPIﾎﾟｰﾄをﾘｾｯﾄする
-		wait_us(5);			//SWの電圧安定を待つ
+#if VOICE_S>0				//����S����������Ƃ�
+					//����C��SPI���L����̂�ؾ��/��Ăł��Ȃ�
+		spi_reset();			//SPI�߰Ă�ؾ�Ă���
+		wait_us(5);			//SW�̓d�������҂�
 #endif
 //DBS_H;
-		for(n=0;n<SW_SU;n++)		//SWの実装数まで繰返す
+		for(n=0;n<SW_SU;n++)		//SW�̎������܂ŌJ�Ԃ�
 		{
-			if((res=sw_read(n,0)))	//SW操作があったとき
+			if((res=sw_read(n,0)))	//SW���삪�������Ƃ�
 			{
-				cnt=sw_cnt[n];	//操作対象を得る
-				break;		//抜ける
+				cnt=sw_cnt[n];	//����Ώۂ𓾂�
+				break;		//������
 			}
 		}
 //DBS_L;
-#if VOICE_S>0				//音声Sを実装するとき
-					//音声CはSPIを専有するのでﾘｾｯﾄ/ｾｯﾄできない
-		spi_set();			//SPIﾎﾟｰﾄをｾｯﾄする
+#if VOICE_S>0				//����S����������Ƃ�
+					//����C��SPI���L����̂�ؾ��/��Ăł��Ȃ�
+		spi_set();			//SPI�߰Ă�Ă���
 #endif
 	}
 //DBG_B(res);
 #endif
 #ifdef CVD_EN
-//DBG_C('v');				//CVDを実装するとき
-	if(!res)				//操作が無かったら
+//DBG_C('v');				//CVD����������Ƃ�
+	if(!res)				//���삪����������
 	{
-		for(n=0;n<CVD_SU;n++)		//CVDの実装数まで繰返す
+		for(n=0;n<CVD_SU;n++)		//CVD�̎������܂ŌJ�Ԃ�
 		{
-			if((res=cvd_read(n,0)))	//CVD操作があったとき
+			if((res=cvd_read(n,0)))	//CVD���삪�������Ƃ�
 			{
-				cnt=cvd_cnt[n];	//操作対象を得る
-				break;		//抜ける
+				cnt=cvd_cnt[n];	//����Ώۂ𓾂�
+				break;		//������
 			}
 		}
 	}
 //DBG_B(res);
 #endif
 
-	//操作の実行
-	switch(res)				//操作内容で処理する
+	//����̎��s
+	switch(res)				//������e�ŏ�������
 	{
-	case 0:				//操作がないとき
-#ifdef KYOKU_AUTO			//ｵﾙｺﾞｰﾙ演奏を自動開始するとき
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
+	case 0:				//���삪�Ȃ��Ƃ�
+#ifdef KYOKU_AUTO			//�ٺްى��t�������J�n����Ƃ�
+#if PART_N>0				//�ٺްى��t����������Ƃ�
 //DBG_C('o');
 //DBG_B(song.no);
-		if(!song.no)			//演奏してなかったら
+		if(!song.no)			//���t���ĂȂ�������
 		{
-#ifdef KYOKU_RAND			//曲番号をﾗﾝﾀﾞﾏｲｽﾞするとき
+#ifdef KYOKU_RAND			//�Ȕԍ�������ϲ�ނ���Ƃ�
 //DBG_C('\n');
 			kyoku+=(rand()&kyoku_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
+						//����тɑ�������
 			while(kyoku>SONG_IDX.no) kyoku-=SONG_IDX.no;
-						//実装数内に収める
-#else					//曲番号を順に進めるとき
+						//���������Ɏ��߂�
+#else					//�Ȕԍ������ɐi�߂�Ƃ�
 			if(++kyoku>SONG_IDX.no) kyoku=1;
-						//曲番号を進める
+						//�Ȕԍ���i�߂�
 #endif
 //DBG_B(kyoku);
 			SONG_SEL(kyoku);
 		}
 #endif
 #endif
-#ifdef ONSEIN_AUTO			//音声N再生を自動開始するとき
-#if VOICE_N>0				//音声N再生を実装するとき
+#ifdef ONSEIN_AUTO			//����N�Đ��������J�n����Ƃ�
+#if VOICE_N>0				//����N�Đ�����������Ƃ�
 //DBG_C('n');
 //DBG_B(voiceN[0].no);
-		if(!voiceN[0].no)		//再生してなかったら
+		if(!voiceN[0].no)		//�Đ����ĂȂ�������
 		{
-#ifdef ONSEIN_RAND			//音声N番号をﾗﾝﾀﾞﾏｲｽﾞするとき
+#ifdef ONSEIN_RAND			//����N�ԍ�������ϲ�ނ���Ƃ�
 			onseiN+=(rand()&onseiN_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
+						//����тɑ�������
 			while(onseiN>VOICEN_SU) onseiN-=VOICEN_SU;
-						//実装数内に収める
-#else					//音声N番号を順に進めるとき
+						//���������Ɏ��߂�
+#else					//����N�ԍ������ɐi�߂�Ƃ�
 			if(++onseiN>VOICEN_SU) onseiN=1;
-						//音声番号を進める
+						//�����ԍ���i�߂�
 #endif
 //DBG_B(onseiN);
-			VOICEN_SEL(0,onseiN);	//再生開始する
+			VOICEN_SEL(0,onseiN);	//�Đ��J�n����
 		}
 #endif
 #endif
 		break;
-	case 1:				//ｵﾝ変化のとき
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
-		if(cnt&ORGEL_CNT)		//操作がｵﾙｺﾞｰﾙのとき
+	case 1:				//�ݕω��̂Ƃ�
+#if PART_N>0				//�ٺްى��t����������Ƃ�
+		if(cnt&ORGEL_CNT)		//���삪�ٺްق̂Ƃ�
 		{
-#ifdef KYOKU_RAND			//曲番号をﾗﾝﾀﾞﾏｲｽﾞするとき
+#ifdef KYOKU_RAND			//�Ȕԍ�������ϲ�ނ���Ƃ�
 //DBG_C('\n');
 			kyoku+=(rand()&kyoku_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
+						//����тɑ�������
 //DBG_B(kyoku);
-			while(kyoku>SONG_IDX.no) kyoku-=SONG_IDX.no;//実装数内に収める
+			while(kyoku>SONG_IDX.no) kyoku-=SONG_IDX.no;//���������Ɏ��߂�
 //DBG_B(kyoku);
-#else					//曲番号を順に進めるとき
+#else					//�Ȕԍ������ɐi�߂�Ƃ�
 			if(++kyoku>SONG_IDX.no) kyoku=1;
-						//曲番号を進める
+						//�Ȕԍ���i�߂�
 #endif
 //DBG_B(kyoku);
-			SONG_SEL(kyoku);	//演奏開始する
+			SONG_SEL(kyoku);	//���t�J�n����
 		}
 #endif
-#if VOICE_N>0				//音声0再生を実装するとき
-		if(cnt& VOICEN_CNT)		//操作が音声0のとき
+#if VOICE_N>0				//����0�Đ�����������Ƃ�
+		if(cnt& VOICEN_CNT)		//���삪����0�̂Ƃ�
 		{
-#ifdef ONSEIN_RAND			//音声N番号をﾗﾝﾀﾞﾏｲｽﾞするとき
+#ifdef ONSEIN_RAND			//����N�ԍ�������ϲ�ނ���Ƃ�
 			onseiN+=(rand()&onseiN_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
+						//����тɑ�������
 			while(onseiN>VOICEN_SU) onseiN-=VOICEN_SU;
-						//実装数内に収める
-#else					//音声N番号を順に進めるとき
+						//���������Ɏ��߂�
+#else					//����N�ԍ������ɐi�߂�Ƃ�
 			if(++onseiN>VOICEN_SU) onseiN=1;
-						//音声番号を進める
+						//�����ԍ���i�߂�
 #endif
 //DBG_B(onseiN);
-			VOICEN_SEL(0,onseiN);	//再生開始する
+			VOICEN_SEL(0,onseiN);	//�Đ��J�n����
 		}
 #endif
 		break;
 
-	case 2:				//長ｵﾝ一致のとき
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
-		if(cnt&ORGEL_CNT)		//操作がｵﾙｺﾞｰﾙのとき
+	case 2:				//���݈�v�̂Ƃ�
+#if PART_N>0				//�ٺްى��t����������Ƃ�
+		if(cnt&ORGEL_CNT)		//���삪�ٺްق̂Ƃ�
 		{
-			SONG_SEL(0);		//演奏中断する
+			SONG_SEL(0);		//���t���f����
 		}
 #endif
 		break;
@@ -1257,9 +1257,9 @@ static void CB_KOYUU(void)
 }
 
 
-#if	PART_N>0			//ｵﾙｺﾞｰﾙ演奏を実装するとき
+#if	PART_N>0			//�ٺްى��t����������Ƃ�
 //==============================================
-//演奏終了時の処理(ｺｰﾙﾊﾞｯｸ関数)
+//���t�I�����̏���(����ޯ��֐�)
 //==============================================
 static void CB_SONG_END(void)
 {
@@ -1267,20 +1267,20 @@ static void CB_SONG_END(void)
 #endif
 
 
-#if	VOICE_N>0			//音声N再生を実装するとき
+#if	VOICE_N>0			//����N�Đ�����������Ƃ�
 //==============================================
-//音声0再生終了時の処理(ｺｰﾙﾊﾞｯｸ関数)
+//����0�Đ��I�����̏���(����ޯ��֐�)
 //==============================================
 static void CB_VOICEN_END(
-	unsigned char ch)			//音声Nのch番号
+	unsigned char ch)			//����N��ch�ԍ�
 {
 }
 #endif
 
 
-#if	VOICE_I>0			//音声I再生を実装するとき
+#if	VOICE_I>0			//����I�Đ�����������Ƃ�
 //==============================================
-//音声I再生終了時の処理(ｺｰﾙﾊﾞｯｸ関数)
+//����I�Đ��I�����̏���(����ޯ��֐�)
 //==============================================
 static void CB_VOICEI_END(void)
 {
@@ -1288,9 +1288,9 @@ static void CB_VOICEI_END(void)
 #endif
 
 
-#if	VOICE_C>0			//音声C再生を実装するとき
+#if	VOICE_C>0			//����C�Đ�����������Ƃ�
 //==============================================
-//音声C再生終了時の処理(ｺｰﾙﾊﾞｯｸ関数)
+//����C�Đ��I�����̏���(����ޯ��֐�)
 //==============================================
 static void CB_VOICEC_END(void)
 {
@@ -1298,12 +1298,12 @@ static void CB_VOICEC_END(void)
 #endif
 
 
-#if	VOICE_S>0			//音声S再生を実装するとき
+#if	VOICE_S>0			//����S�Đ�����������Ƃ�
 //==============================================
-//音声S再生終了時の処理(ｺｰﾙﾊﾞｯｸ関数)
+//����S�Đ��I�����̏���(����ޯ��֐�)
 //==============================================
 static void CB_VOICES_END(
-	unsigned char ch)			//音声Sのch番号
+	unsigned char ch)			//����S��ch�ԍ�
 {
 }
 #endif
