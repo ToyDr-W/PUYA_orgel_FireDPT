@@ -11,8 +11,8 @@
 //#define		ONSEIC_AUTO	//音声C再生を自動開始するときに宣言する
 //#define		ONSEIS_AUTO	//音声S(ch0)再生を自動開始するときに宣言する
 #define	RAND_CHSEL	0x00000004	//ﾗﾝﾀﾞﾏｲｽﾞの種にするCHSEL(PA2:ADC_IN2)
-//#define	KYOKU_RAND	//曲番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
-#define	ONSEIN_RAND	//音声N番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
+#define	KYOKU_RAND	//曲番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
+//#define	ONSEIN_RAND	//音声N番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
 //#define	ONSEII_RAND	//音声I番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
 //#define	ONSEIC_RAND	//音声C番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する
 //#define	ONSEIS_RAND	//音声S番号をﾗﾝﾀﾞﾏｲｽﾞするときに宣言する

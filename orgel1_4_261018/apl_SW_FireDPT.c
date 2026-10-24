@@ -1,3 +1,30 @@
+/*
+｢糸魚川に春よ来い2026｣として､100均の消防車おもちゃを､PUYA電子ｵﾙｺﾞｰﾙ付きに改造する
+地元の消防本部に寄贈し､広報活動に活用してもらうことを期待 (2026/10/24改 ToyDr.わたなべ)
+
+【動作仕様】
+
+・電源ｽｲｯﾁなし、常時はｽﾘｰﾌﾟしている
+
+・SWの短ｵﾝ検知で､ｵﾙｺﾞｰﾙ効果音演奏と音声N0を同時再生する
+　消防車､救急車やﾊﾟﾄｶｰのｻｲﾚﾝ効果音に加えて､
+　糸魚川ゆかりの｢春よ来い(詞:相馬御風)｣と､
+　ｱﾝﾊﾟﾝﾏｰﾁも含めて適当な数曲を実装する
+　音声Nはﾒﾓﾘの範囲内で､おしゃべり音声を実装する
+　ｵﾙｺﾞｰﾙ効果音はﾗﾝﾀﾞﾑ演奏､おしゃべり音声は順次再生する
+　ﾀｲﾏｰﾓｰﾄﾞの長ｵﾝ一致で､演奏･再生を停止する
+
+・CdS又はCVD実装を宣言すると､そのｵﾝ変化でも､音声Nを単独再生できる
+　再生中のｵﾝ変化は､次の音声を順次再生する
+　ﾘｱﾙﾓｰﾄﾞだが､ｵﾝからｵﾌへの変化は無視する
+
+・演奏中や再生中は2Hz周期で､LED2個を交互点滅する
+
+このｺｰﾄﾞは｢PUYA電子ｵﾙｺﾞｰﾙ+音声再生｣を､おもちゃ修理に応用するための限定版であり､
+無用の共通化部分を含んでいる｡
+*/
+
+
 //SW･CdS･CVDで電子ｵﾙｺﾞｰﾙを制御するｱﾌﾟﾘｹｰｼｮﾝの共通機能部
 
 //複数のSW･１個のCdS･複数のCVDを実装可能｡但しﾎﾟｰﾄ割当てが可能なもの｡
@@ -37,6 +64,7 @@
 //==============================================
 #define	SLEEP_TMR	1000			//Sleepに入る前の時限[ms]
 						//　操作の評価時間よりも長くすること
+#define	LED_TMR		256			//LED点滅周期[固有処理ｺｰﾊﾞｯｸ周期]
 
 
 //==============================================
@@ -44,9 +72,6 @@
 //==============================================
 #define	ORGEL_CNT	0x80		//ｵﾙｺﾞｰﾙ操作
 #define	VOICEN_CNT	0x40		//音声N操作
-#define	VOICEI_CNT	0x20		//音声I操作
-#define	VOICEC_CNT	0x10		//音声C操作
-#define	VOICES_CNT	0x08		//音声S操作
 #define	NON_CNT		0x00		//操作無し
 
 
@@ -533,41 +558,6 @@ static const unsigned char sw_cnt[]=		//ｱﾌﾟﾘ制御情報
 //SW0の操作-------------------------------------
 #ifdef SW0_BIT
 	SW0_CNT,
-#endif
-
-//SW1の操作-------------------------------------
-#ifdef SW1_BIT
-	SW1_CNT,
-#endif
-
-//SW2の操作-------------------------------------
-#ifdef SW2_BIT
-	SW2_CNT,
-#endif
-
-//SW3の操作-------------------------------------
-#ifdef SW3_BIT
-	SW3_CNT,
-#endif
-
-//SW4の操作-------------------------------------
-#ifdef SW4_BIT
-	SW4_CNT,
-#endif
-
-//SW5の操作-------------------------------------
-#ifdef SW5_BIT
-	SW5_CNT,
-#endif
-
-//SW6の操作-------------------------------------
-#ifdef SW6_BIT
-	SW6_CNT,
-#endif
-
-//SW7の操作-------------------------------------
-#ifdef SW7_BIT
-	SW7_CNT,
 #endif
 };
 
@@ -1220,6 +1210,10 @@ static void CB_KOYUU(void)
 #ifdef SLEEP_EN				//Sleep機能を実装するとき
 	static unsigned short sleep_tmr=0;	//Sleepﾀｲﾏｰ
 #endif
+#ifdef LED0_BIT				//LEDを実装するとき
+	static unsigned char led_tmr;		//LED点滅ﾀｲﾏｰ
+	static unsigned char led_sts;		//LED点滅状態(0=消灯､1=点灯)
+#endif
 	unsigned char res,cnt,n;
 #if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
 	struct SONG_IDX *p;
@@ -1248,10 +1242,47 @@ static void CB_KOYUU(void)
 	if(res)					//稼働しているときは
 	{
 		sleep_tmr=0;			//　Sleep時限をｸﾘｱする
+
+#ifdef LED0_BIT				//LEDを実装するとき
+		//LED点滅
+		if(led_tmr==0)
+		{
+			if(led_sts)		//点灯していたら
+			{
+				led_sts=0;	//LED0消灯
+				GPIO_L(LED0_GPIO,LED0_BIT);
+#ifdef LED1_BIT				//LED1を実装するとき
+				GPIO_H(LED1_GPIO,LED1_BIT);
+#endif					//LED1点灯
+			}
+			else			//消灯していたら
+
+			{
+				led_sts=1;	//LED0点灯
+				GPIO_H(LED0_GPIO,LED0_BIT);
+#ifdef LED1_BIT				//LED1を実装するとき
+				GPIO_L(LED1_GPIO,LED1_BIT);
+#endif					//LED1消灯
+			}
+		}
+		if(++led_tmr>LED_TMR/2/KOYUU_PR) led_tmr=0;
+						//LED点滅ﾀｲﾏｰ更新
+#endif
+
+//		return;				//戻る
+
 	}
 	else					//稼働していないときは
 	{
 //DBG_C('X');
+#ifdef LED0_BIT				//LED0を実装するとき
+		led_tmr=0;			//LED点滅ﾀｲﾏｰを初期化
+		led_sts=0;			//LED消灯
+		GPIO_L(LED0_GPIO,LED0_BIT);
+#ifdef LED1_BIT				//LED1を実装するとき
+		GPIO_L(LED1_GPIO,LED1_BIT);
+#endif
+#endif
 //DBG_S(sleep_tmr);
 		if(++sleep_tmr>SLEEP_TMR/KOYUU_PR)
 						//　Sleep時限を超えたら
@@ -1362,68 +1393,8 @@ static void CB_KOYUU(void)
 		}
 #endif
 #endif
-#ifdef ONSEII_AUTO			//音声I再生を自動開始するとき
-#if VOICE_I>0				//音声I再生を実装するとき
-//DBG_C('i');
-//DBG_B(voiceI.no);
-		if(!voiceI.no)			//再生してなかったら
-		{
-#ifdef ONSEII_RAND			//音声I番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-			onseiI+=(rand()&onseiI_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-			while(onseiI>VOICEI_SU) onseiI-=VOICEI_SU;
-						//実装数内に収める
-#else					//音声I番号を順に進めるとき
-			if(++onseiI>VOICEI_SU) onseiI=1;
-						//音声番号を進める
-#endif
-//DBG_B(onseiI);
-			VOICEI_SEL(onseiI);	//再生開始する
-		}
-#endif
-#endif
-#ifdef ONSEIC_AUTO			//音声C再生を自動開始するとき
-#if VOICE_C>0				//音声C再生を実装するとき
-//DBG_C('c');
-//DBG_B(voiceC.no);
-		if(!voiceC.no)			//再生してなかったら
-		{
-#ifdef ONSEIC_RAND			//音声C番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-			onseiC+=(rand()&onseiC_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-			while(onseiC>VOICEC_SU) onseiC-=VOICEC_SU;
-						//実装数内に収める
-#else					//音声C番号を順に進めるとき
-			if(++onseiC>VOICEC_SU) onseiC=1;
-						//音声番号を進める
-#endif
-//DBG_B(onseiC);
-			VOICEC_SEL(onseiC);	//再生開始する
-		}
-#endif
-#endif
-#ifdef ONSEIS_AUTO			//音声S再生を自動開始するとき
-#if VOICE_S>0				//音声S再生を実装するとき
-//DBG_C('s');
-//DBG_B(voiceS.no);
-		if(!voiceS[0].no)		//再生してなかったら
-		{
-#ifdef ONSEIS_RAND			//音声S番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-			onseiS+=(rand()&onseiS_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-			while(onseiS>VOICES_SU) onseiS-=VOICES_SU;
-						//実装数内に収める
-#else					//音声S番号を順に進めるとき
-			if(++onseiS>VOICES_SU) onseiS=1;
-						//音声番号を進める
-#endif
-//DBG_B(onseiS);
-			VOICES_SEL(0,onseiS);	//再生開始する
-		}
-#endif
-#endif
 		break;
-	case 1:				//短ｵﾝ検知のとき
+	case 1:				//ｵﾝ変化のとき
 #if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
 		if(cnt&ORGEL_CNT)		//操作がｵﾙｺﾞｰﾙのとき
 		{
@@ -1458,58 +1429,8 @@ static void CB_KOYUU(void)
 			VOICEN_SEL(0,onseiN);	//再生開始する
 		}
 #endif
-#if VOICE_I>0				//音声I再生を実装するとき
-		if(cnt&VOICEI_CNT)		//操作が音声Iのとき
-		{
-#ifdef ONSEII_RAND			//音声I番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-			onseiI+=(rand()&onseiI_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-			while(onseiI>VOICEI_SU) onseiI-=VOICEI_SU;
-						//実装数内に収める
-#else					//音声I番号を順に進めるとき
-			if(++onseiI>VOICEI_SU) onseiI=1;
-						//音声番号を進める
-#endif
-//DBG_B(onseiI);
-			VOICEI_SEL(onseiI);	//再生開始する
-		}
-#endif
-#if VOICE_C>0				//音声C再生を実装するとき
-		if(cnt&VOICEC_CNT)		//操作が音声Cのとき
-		{
-#ifdef ONSEIC_RAND			//音声C番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-			onseiC+=(rand()&onseiC_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-			while(onseiC>VOICEC_SU) onseiC-=VOICEC_SU;
-						//実装数内に収める
-#else					//音声C番号を順に進めるとき
-			if(++onseiC>VOICEC_SU) onseiC=1;
-						//音声番号を進める
-#endif
-//DBG_B(onseiC);
-			VOICEC_SEL(onseiC);	//再生開始する
-		}
-#endif
-#if VOICE_S>0				//音声S再生を実装するとき
-		if(cnt&VOICES_CNT)		//操作が音声Sのとき
-		{
-#ifdef ONSEIS_RAND			//音声S番号をﾗﾝﾀﾞﾏｲｽﾞするとき
-//DBG_C('\n');
-			onseiS+=(rand()&onseiS_rand_msk)+1;
-						//ﾗﾝﾀﾞﾑに増加する
-//DBG_B(onseiS);
-			while(onseiS>VOICES_SU) onseiS-=VOICES_SU;
-						//実装数内に収める
-#else					//音声S番号を順に進めるとき
-			if(++onseiS>VOICES_SU) onseiS=1;
-						//音声番号を進める
-//DBG_B(onseiS);
-#endif
-//DBG_B(onseiS);
-			VOICES_SEL(0,onseiS);	//再生開始する
-		}
-#endif
 		break;
+
 	case 2:				//長ｵﾝ一致のとき
 #if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
 		if(cnt&ORGEL_CNT)		//操作がｵﾙｺﾞｰﾙのとき
@@ -1517,77 +1438,8 @@ static void CB_KOYUU(void)
 			SONG_SEL(0);		//演奏中断する
 		}
 #endif
-#if VOICE_N>0				//音声0再生を実装するとき
-		if(cnt& VOICEN_CNT)		//操作が音声0のとき
-		{
-			VOICEN_SEL(0,0);	//再生中断する
-		}
-#endif
-#if VOICE_I>0				//音声I再生を実装するとき
-		if(cnt&VOICEI_CNT)		//操作が音声Iのとき
-		{
-			VOICEI_SEL(0);		//再生中断する
-		}
-#endif
-#if VOICE_C>0				//音声C再生を実装するとき
-		if(cnt&VOICEC_CNT)		//操作が音声Cのとき
-		{
-			VOICEC_SEL(0);		//再生中断する
-		}
-#endif
-#if VOICE_S>0				//音声S再生を実装するとき
-		if(cnt&VOICES_CNT)		//操作が音声Sのとき
-		{
-			VOICES_SEL(0,0);	//再生中断する
-		}
-#endif
 		break;
 	}
-
-	//LED点滅
-#if PART_N>0				//ｵﾙｺﾞｰﾙ演奏を実装するとき
-	if(song.no)				//演奏中のとき
-	{
-#ifdef LED0_BIT				//LED0を実装するとき
-		if(part[0].onpu_cd&0x0001) GPIO_H(LED0_GPIO,LED0_BIT);
-		else GPIO_L(LED0_GPIO,LED0_BIT);
-#endif
-#ifdef LED1_BIT				//LED1を実装するとき
-		if(part[0].onpu_cd&0x0002) GPIO_H(LED1_GPIO,LED1_BIT);
-		else GPIO_L(LED1_GPIO,LED1_BIT);
-#endif
-#ifdef LED2_BIT				//LED2を実装するとき
-		if(part[0].onpu_cd&0x0004) GPIO_H(LED2_GPIO,LED2_BIT);
-		else GPIO_L(LED2_GPIO,LED2_BIT);
-#endif
-#ifdef LED3_BIT				//LED3を実装するとき
-		if(part[0].onpu_cd&0x0008) GPIO_H(LED3_GPIO,LED3_BIT);
-		else GPIO_L(LED3_GPIO,LED3_BIT);
-#endif
-#ifdef LED4_BIT				//LED4を実装するとき
-		if(part[0].onpu_cd&0x0010) GPIO_H(LED4_GPIO,LED4_BIT);
-		else GPIO_L(LED4_GPIO,LED4_BIT);
-#endif
-#ifdef LED5_BIT				//LED5を実装するとき
-#if PART_N==1				//1ﾊﾟｰﾄのみ実装するとき
-		if(part[0].onpu_cd&0x0020) GPIO_H(LED5_GPIO,LED5_BIT);
-		else GPIO_L(LED5_GPIO,LED5_BIT);
-#else					//2ﾊﾟｰﾄ以上実装するとき
-		if(part[1].onpu_cd&0x0001) GPIO_H(LED5_GPIO,LED5_BIT);
-		else GPIO_L(LED5_GPIO,LED5_BIT);
-#endif
-#endif
-#ifdef LED6_BIT				//LED6を実装するとき
-#if PART_N==1				//1ﾊﾟｰﾄのみ実装するとき
-		if(part[0].onpu_cd&0x0040) GPIO_H(LED6_GPIO,LED6_BIT);
-		else GPIO_L(LED6_GPIO,LED6_BIT);
-#else					//2ﾊﾟｰﾄ以上実装するとき
-		if(part[1].onpu_cd&0x0002) GPIO_H(LED6_GPIO,LED6_BIT);
-		else GPIO_L(LED6_GPIO,LED6_BIT);
-#endif
-#endif
-	}
-#endif
 }
 
 
