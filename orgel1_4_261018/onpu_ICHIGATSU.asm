@@ -1,0 +1,436 @@
+
+	bgn_mac
+;==============================================
+;一月一日 (作曲：上 真行)
+;==============================================
+
+;
+;ﾊﾟｰﾄ0の音符ﾃﾞｰﾀﾃｰﾌﾞﾙ
+;
+ICHIGATSU0_onpu_tbl
+	vel_mac 112	;ﾍﾞﾛｼﾃｨ設定
+	env_mac 50	;ｴﾝﾍﾞﾛｰﾌﾟﾀｲﾑ設定
+
+;0-1	ｿﾗｼﾚｿﾗｼﾚ	
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK8,3,Si
+	onp_mac 0,kK8,4,Re
+;0-2	ｿ
+	onp_mac 0,kK1,4,So
+;0-3	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;0-4	ﾄﾞﾗｿﾌｧ
+	onp_mac 0,kP4,4,Do
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,Fa
+;0-5	ﾐｿﾌｧﾚ
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kP4,3,Fa
+	onp_mac 0,kK8,3,Re
+;0-6	ﾄﾞﾄﾞ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,4,Do
+	vel_mac 140	;ﾍﾞﾛｼﾃｨ設定
+;1-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;1-2	ﾐﾚﾄﾞﾄﾞ
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Do
+;1-3	ﾚﾚｿﾌｧ
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Fa
+;1-4	ﾐｿｿﾄﾞﾐ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+;2-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;2-2	ﾐﾚﾄﾞﾄﾞ
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Do
+;2-3	ﾚﾚﾐﾚ
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+;2-4	ﾄﾞﾐｿ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,So
+;3-1	ﾄﾞﾄﾞﾄﾞﾗ
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,3,La
+;3-2	ﾄﾞｿｿ
+	onp_mac 0,kK2,4,Do
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,So
+;3-3	ﾗﾗｿﾌｧ
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Fa
+;3-4	ﾐﾚﾐﾌｧﾌｧ#
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,FaS
+;4-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;4-2	ﾄﾞﾗｿﾌｧ
+	onp_mac 0,kP4,4,Do
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,Fa
+;4-3	ﾐｿﾌｧﾚ
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kP4,3,Fa
+	onp_mac 0,kK8,3,Re
+;4-4	ﾄﾞｿｿﾄﾞﾐ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+;5-1	ｿｿﾗｿ
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;5-2	ﾐﾚﾄﾞﾄﾞ
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Do
+;5-3	ﾚﾚｿﾌｧ
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Fa
+;5-4	ﾐﾄﾞﾚﾐﾌｧ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;6-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;6-2	ﾐﾚﾄﾞﾄﾞ
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Do
+;6-3	ﾚﾚﾐﾚ	
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Re
+;6-4	ﾄﾞﾄﾞﾚﾐｿ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,So
+;7-1	ﾄﾞﾄﾞﾗ
+	onp_mac 0,kK2,4,Do
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,3,La
+;7-2	ﾄﾞﾄﾞｿｿ
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,4,Do
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,So
+;7-3	ﾗﾗｿﾌｧ
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Fa
+;7-4	ﾐﾚﾐﾌｧﾌｧ#
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,FaS
+;8-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;8-2	ﾄﾞﾗｿﾌｧ
+	onp_mac 0,kP4,4,Do
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,Fa
+;8-3	ﾐｿﾌｧﾚ
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kP4,3,Fa
+	onp_mac 0,kK8,3,Re
+;8-4	ﾄﾞｿﾚﾐﾌｧ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;9-1	ｿﾗｿ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,La
+	onp_mac 0,kK4,3,So
+;9-2	ﾄﾞﾗｿﾌｧ
+	onp_mac 0,kP4,4,Do
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK4,3,Fa
+;9-3	ﾐｿﾌｧﾚ
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kP4,3,Fa
+	onp_mac 0,kK8,3,Re
+;9-4	ﾄﾞﾄﾞ
+	vel_mac 112	;ﾍﾞﾛｼﾃｨ設定
+	onp_mac 0,kK2,3,Do
+	vel_mac 96	;ﾍﾞﾛｼﾃｨ設定
+	onp_mac 0,kK1,4,Do
+	onp_end
+
+;
+;ﾊﾟｰﾄ1の音符ﾃﾞｰﾀﾃｰﾌﾞﾙ
+;
+ICHIGATSU1_onpu_tbl
+	vel_mac 96	;ﾍﾞﾛｼﾃｨ設定
+	env_mac 50	;ｴﾝﾍﾞﾛｰﾌﾟﾀｲﾑ設定
+
+;0-1	ｿ
+	onp_mac 0,kK1,2,So
+;0-2	ｼ
+	onp_mac 1,kK1,3,Si
+;0-3	ﾄﾞｿ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,2,So
+;0-4	ﾄﾞﾄﾞ#ﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,DoS
+	onp_mac 0,kK4,3,Re
+;0-5	ｿｿ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK2,2,So
+;0-6	ﾄﾞﾄﾞ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,3,Do
+	vel_mac 115	;ﾍﾞﾛｼﾃｨ設定
+;1-1	ﾄﾞ
+	onp_mac 0,kK1,3,Do
+;1-2	ﾄﾞﾐ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,2,Mi
+;1-3	ﾌｧｿ
+	onp_mac 0,kK2,2,Fa
+	onp_mac 0,kK2,2,So
+;1-4	ﾄﾞｿ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,2,So
+;2-1	ﾄﾞ
+	onp_mac 0,kK1,3,Do
+;2-2	ｼﾗ
+	onp_mac 0,kK2,2,Si
+	onp_mac 0,kK2,2,La
+;2-3	ﾌｧｿ
+	onp_mac 0,kK2,2,Fa
+	onp_mac 0,kK2,2,So
+;2-4	ﾄﾞ
+	onp_mac 0,kK1,3,Do
+;3-1	ﾗﾌｧ
+	onp_mac 0,kK2,2,La
+	onp_mac 0,kK2,2,Fa
+;3-2	ﾐﾄ
+	onp_mac 0,kK2,2,Mi
+	onp_mac 0,kK2,2,Do
+;3-3	ﾚｼｿ#
+	onp_mac 0,kK2,2,Re
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kK4,2,SoS
+;3-4	ﾗｿ
+	onp_mac 0,kK2,2,La
+	onp_mac 0,kK2,2,So
+;4-1	ﾄﾞﾄﾞ
+	onp_mac 0,kK2,2,Do
+	onp_mac 0,kK2,2,Do
+;4-2	ﾗﾐﾌｧ
+	onp_mac 0,kK2,2,La
+	onp_mac 0,kK4,2,Mi
+	onp_mac 0,kK4,2,Fa
+;4-3	ｿｿ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK2,2,So
+;4-4	ﾄﾞ
+	onp_mac 0,kK1,2,Do
+;5-1	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;5-2	ﾄﾞｿﾄﾞﾄﾞﾐｿ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK4,2,So
+;5-3	ﾚﾌｧﾗｿｼﾚ
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK4,3,Re
+;5-4	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;6-1	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;6-2	ﾐｿ#ｼﾗﾄﾞﾗ
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,SoS
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,2,La
+;6-3	ﾚﾌｧﾗｿｼﾚ
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,2,Si
+;6-4	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;7-1	ﾌｧﾗﾄﾞﾌｧﾗﾄﾞ
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+;7-2	ﾄﾞﾐｿﾄﾞｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;7-3	ﾚﾗﾚｿｿ#
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK4,2,SoS
+;7-4	ﾗﾄﾞﾐｿｼﾚ
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK4,3,Re
+;8-1	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;8-2	ﾌｧﾗﾄﾞﾄﾞ#ﾚ
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,DoS
+	onp_mac 0,kK4,3,Re
+;8-3	ｿﾄﾞﾐﾚｿｼ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,2,Si
+;8-4	ﾄﾞｿﾄﾞﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK2,2,Do
+;9-1	ﾄﾞｿﾄﾞﾐｿﾄﾞ
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;9-2	ﾌｧﾗﾄﾞﾄﾞ#ﾚ
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,DoS
+	onp_mac 0,kK4,3,Re
+;9-3	ｿﾄﾞﾐﾚｿｼ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,2,Si
+;9-4	ﾄﾞｿﾄﾞﾐﾄﾞ
+	vel_mac 96	;ﾍﾞﾛｼﾃｨ設定
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+	vel_mac 84	;ﾍﾞﾛｼﾃｨ設定
+	onp_mac 0,kK1,3,Do
+	onp_end
+
+;
+;　（C） 2018-2023 MASARU WATANABE
+
+	end_mac
+	end

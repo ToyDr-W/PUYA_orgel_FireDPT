@@ -1,0 +1,1630 @@
+
+;Ø‘Ö‚¦‚é”gŒ`‚ğŒÄ‚Ş
+;;#include	"enve_EXP.asm"	;´İÍŞÛ°ÌßÃŞ°À¤w”Œ¸Š‹Èü
+;;#include	"enve_RSN.asm"	;ÏØİÊŞ•—´İÍŞÛ°ÌßÃŞ°À¤±À¯¸Š´‚Æ‚Æ‚à‚É–L‚©‚È—]‰C‚à
+;#include	"enve_VIB.asm"	;ËŞÌŞ×Ì«İ•—´İÍŞÛ°ÌßÃŞ°À¤—h‚ç‚¬Œø‰Ê
+;#include	"enve_TREMOLO.asm"	;ÏİÄŞØİ•—´İÍŞÛ°ÌßÃŞ°À¤ÄÚÓÛŒø‰Ê
+;#include	"enve_ELEGANTE.asm"	;—D‰ë‚Å‰¹—Ê–L‚©‚È´İÍŞÛ°ÌßÃŞ°À¤—h‚ç‚¬Œø‰Ê
+;;#include	"wave_SIN14.asm"	;‰¹Œ¹ÃŞ°À¤³Œ·”giŠî–{{‚SŸ‚’²”gj‰¹Œ¹
+;;#include	"wave_SQUAR.asm"	;‰¹Œ¹ÃŞ°À¤‹éŒ`”gi‚TŸ‚’²”g‚Ü‚Åj‰¹Œ¹
+;#include	"wave_RING4.asm"	;‰¹Œ¹ÃŞ°À¤³Œ·”gŠî–{‚Æ‚SŸ‚’²”g‚Æ‚ÌØİ¸Ş•Ï’²‰¹Œ¹
+;;#include	"wave_SHEPARD.asm"	;‰¹Œ¹ÃŞ°À¤µ¸À°ÌŞ”{‰¹‚ğ‘½‚­ŠÜ‚Ş‰¹Œ¹
+
+	bgn_mac
+;===================================
+;–¢—ˆ‚Ö@ì‹ÈF‹Êéçt
+;===================================
+
+;
+;Êß°Ä0‚Ì‰¹•„ÃŞ°ÀÃ°ÌŞÙ
+;
+MIRAIHE30_onpu_tbl
+	vel_mac 80	;ÍŞÛ¼Ã¨İ’è
+	env_mac 30	;´İÍŞÛ°ÌßÀ²Ñİ’è
+;0-1	ĞĞÌ§ĞĞÌ§
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;0-2	ĞĞÌ§ĞĞ
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,Mi
+;0-3	Ì§Ì§¿Ì§Ì§¿
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,So
+;0-4	Ì§Ì§ĞÚĞÚÄŞ
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK4,3,Re
+	enw_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Do
+;1-1	_ÄŞÄŞÚĞÌ§
+	onp_mac 1,kP4,3,Do
+	vel_mac 88	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;1-2	ĞÌ§ÚÄŞÚ¼¼
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP8,3,Re
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+;1-3	ÄŞ××¼ÄŞÄŞÚ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;1-4	Ğ¼¼ÄŞ¼×
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK2,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,La
+;2-1	_×¿Ì§ĞÌ§
+	onp_mac 1,kP4,2,La
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;2-2	¿ÄŞÄŞÌ§Ğ
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK16,3,Mi
+;2-3	Ì§Ì§Ì§ĞÚÄŞ¼
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,Si
+;2-4	ÚÄŞÄŞ
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kP8,3,Do
+	onp_mac 1,kP2,3,Do
+	vel_mac 96	;ÍŞÛ¼Ã¨İ’è
+;3-1	_ÄŞ¼ÄŞĞÌ§¿
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,So
+;3-2	_
+	onp_mac 1,kK1,2,So
+;3-3	_×××¿Ì§×
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+;3-4	¿ÚĞ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,Re
+	onp_mac 0,kK16,2,Mi
+	onp_mac 1,kP2,2,Mi
+;4-1	Ì§¿¿Ğ
+	onp_mac 0,kP4,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,So
+	onp_mac 1,kP4,2,So
+	onp_mac 0,kK8,2,Mi
+;4-2	¿××
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 1,kK2,2,La
+;4-3	_Ì§¿×ÄŞÄŞÚ
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK16,3,Re
+;4-4	¼×¼×¿
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 1,kK2,2,So
+;5-1	_ÄŞ¼ÄŞ¼ÄŞĞ¿
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,So
+;5-2	_×¿Ì§ĞÌ§
+	onp_mac 1,kK2,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Fa
+;5-3	_Ì§Ì§×F×F¿Ì§×F
+	onp_mac 1,kP4,2,Fa
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK8,2,LaF
+	onp_mac 0,kP8,2,LaF
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,LaF
+;5-4	¿
+	onp_mac 0,kK1,2,So
+;6-1	_×¼ÄŞÄŞÄŞÚĞ
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Mi
+;6-2	_ĞÌ§ĞÚÄŞĞ
+	onp_mac 1,kP4,3,Mi
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,3,Mi
+;6-3	Ú×¼¼¼ÄŞÚ
+	onp_mac 1,kK4,3,Re
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kR4,2,Si
+	onp_mac 0,kR4,3,Do
+	onp_mac 0,kR4,3,Re
+;6-4	ÚÄŞÄŞ
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kP2,3,Do
+	vel_mac 104	;ÍŞÛ¼Ã¨İ’è
+;3-01	_ÄŞ¼ÄŞĞÌ§¿
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,So
+;3-02	_
+	onp_mac 1,kK1,2,So
+;3-03	_×××¿Ì§×
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,La
+;3-04	¿Ì§ĞĞ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,Mi
+	onp_mac 1,kK2,2,Mi
+	onp_mac 1,kK8,2,Mi
+	onp_mac 0,kK8,2,Mi
+;4-01	Ì§Ì§Ì§¿¿Ğ
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,So
+	onp_mac 1,kP4,2,So
+	onp_mac 0,kK8,2,Mi
+;4-02	¿××
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 1,kK2,2,La
+;4-03	_Ì§¿×ÄŞÄŞÚ
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;4-04	¼×¼×¿
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 1,kK2,2,So
+;5-01	_ÄŞ¼ÄŞ¼ÄŞÌ§×
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,La
+;5-02	¿×¿Ì§ĞÌ§
+	onp_mac 1,kK16,2,La
+	onp_mac 0,kP8,2,So
+	onp_mac 1,kK4,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Fa
+;5-03	_Ì§×F×F×F¿Ì§×F
+	onp_mac 1,kP4,2,Fa
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,LaF
+	onp_mac 0,kK16,2,LaF
+	onp_mac 0,kK8,2,LaF
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,LaF
+;5-04	¿
+	onp_mac 0,kK1,2,So
+;6-01	_×¼ÄŞÄŞÄŞÚĞ
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Mi
+;6-02	_ĞÌ§ĞÚÄŞĞ
+	onp_mac 1,kP4,3,Mi
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,3,Mi
+;6-03	Ú×¼¼¼ÄŞÚ
+	onp_mac 1,kK4,3,Re
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kR4,2,Si
+	onp_mac 0,kR4,3,Do
+	onp_mac 0,kR4,3,Re
+;6-04	ÚÄŞÄŞ××
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kK2,3,Do
+	onp_mac 0,kK8,0,0
+	vel_mac 119	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	rp2_mac 2	;ØËß°Ä2‰ñ”İ’è
+MIRAIHE30_onpu_tbl_7_1
+;7-1	Ì§ĞÌ§Ú¿×¼¼
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK4,2,Si
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+;7-2	¿Ì§¿Ì§ĞĞĞÚ
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK16,3,Mi
+	onp_mac 1,kK4,3,Mi
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,3,Mi
+	onp_mac 0,kK16,3,Mi
+	onp_mac 0,kK16,3,Re
+;7-3	ÄŞ××¼ÄŞ×ÄŞĞ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+;7-4	ĞÚÚĞÚÄŞ
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Re
+	onp_mac 1,kK2,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Do
+;8-1	_ÄŞÄŞÚĞÌ§
+	onp_mac 1,kP4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;8-2	ĞÌ§ÚÄŞÚ¼¼
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP8,3,Re
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+;8-3	ÄŞ××¼ÄŞÄŞÚ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;8-4	Ğ¼¼ÄŞ¼×
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK2,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,La
+;9-1	_×¿Ì§ĞÌ§
+	onp_mac 1,kP4,2,La
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;9-2	¿ÄŞÄŞÌ§Ğ
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK16,3,Mi
+;9-3	Ì§Ì§Ì§ĞÚÄŞ¼
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,Si
+	jp2_mac MIRAIHE30_onpu_tbl_9_4-MIRAIHE30_onpu_tbl
+	;ØËß°Ä2•ªŠò
+	jmp_mac MIRAIHE30_onpu_tbl_12_0-MIRAIHE30_onpu_tbl
+	;–³ğŒ•ªŠò
+MIRAIHE30_onpu_tbl_9_4
+;9-4	ÚÄŞ¿Ì§
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kP8,3,Do
+	onp_mac 1,kK2,3,Do
+	onw_mac wave_RING4	;‰¹Œ¹”gŒ`İ’è
+	ona_mac wave_RING4	;‰¹Œ¹”gŒ`İ’è
+	enw_mac enve_RSN	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_RSN	;´İÍŞÛ°Ìß”gŒ`İ’è
+	onp_mac 0,kR4,0,0
+	vel_mac 88	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kR4,3,So
+	onp_mac 0,kR4,3,Fa
+;10-1	ĞÄŞ¿ÄŞÚ¿
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kP8,2,Si
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kP8,3,Re
+	onp_mac 0,kK8,2,So
+;10-2	×ÄŞ¼ÄŞÚ
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;10-3	ÄŞ××ÄŞ¿¿ÄŞ¿
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK8,2,So
+;10-4	_ÚĞÌ§¿×¿¿¼ÄŞÚĞ
+	onp_mac 0,kP8,0,0
+	onp_mac 0,kK16,2,Re
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Mi
+;11-1	¿¿×¿¿×
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,So
+	onp_mac 0,kK16,3,La
+	onp_mac 0,kK4,3,So
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,So
+	onp_mac 0,kK16,3,La
+;11-2	×ÄŞĞÚÄŞ
+	onp_mac 0,kK16,3,La
+	onp_mac 0,kP2,4,Do
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+;11-3	ÄŞ×ÄŞĞ¿ĞÚÄŞ
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kK4,3,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,So
+	onp_mac 1,kK16,2,Mi
+	onp_mac 0,kK16,2,Mi
+	onp_mac 1,kK16,2,Re
+	onp_mac 0,kK8,2,Do
+;11-4	ÚĞÌ§¿×ÄŞ¼¿Ú××
+	onp_mac 0,kP8,2,Re
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK8,3,Re
+	onw_mac wave_SIN14	;‰¹Œ¹”gŒ`İ’è
+	ona_mac wave_SIN14	;‰¹Œ¹”gŒ`İ’è
+	onp_mac 0,kK16,0,0
+	enw_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	vel_mac 119	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	jmp_mac MIRAIHE30_onpu_tbl_7_1-MIRAIHE30_onpu_tbl
+	;–³ğŒ•ªŠò
+
+MIRAIHE30_onpu_tbl_12_0
+;12-0	ÚÄŞĞÚÄŞ
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kP8,3,Do
+	onp_mac 1,kK2,3,Do
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Do
+;12-1	_ÄŞÄŞÚĞÌ§
+	onp_mac 1,kP4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;12-2	ĞÌ§ÚÄŞÚ×¼
+	onp_mac 0,kP4,3,Mi
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP8,3,Re
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+;12-3	ÄŞ××¼ÄŞÄŞÚ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;12-4	Ğ¼¼ÄŞ¼×
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK2,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK16,2,La
+;13-1	_×¿Ì§ĞÌ§
+	onp_mac 1,kP4,2,La
+	onp_mac 0,kK8,3,La
+	onp_mac 0,kK8,3,So
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Fa
+;13-2	¿ÄŞÄŞÌ§Ğ
+	onp_mac 0,kP4,3,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK16,3,Mi
+;13-3	Ì§Ì§Ì§ĞÚÄŞ¼
+	onp_mac 0,kK4,3,Fa
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,Si
+;13-4	ÚÄŞ
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kP8,3,Do
+	onp_mac 1,kP2,3,Do
+	vel_mac 104	;ÍŞÛ¼Ã¨İ’è
+;14-1	¿¼ÄŞ¿¿
+	enw_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK8,3,So
+;14-2	Ì§ĞÌ§ÄŞ
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK16,3,Mi
+	onp_mac 0,kK16,3,Fa
+	onp_mac 1,kK2,3,Fa
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK8,3,Do
+;14-3	Ì§Ì§Ì§ĞÚÄŞ
+	onp_mac 0,kP4,3,Fa
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Fa
+	onp_mac 0,kK8,3,Mi
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Do
+;14-4	ÄŞÄŞÄŞÄŞ
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 1,kK2,3,Do
+;15-1	_
+	onp_mac 1,kK1,3,Do
+	vel_mac 96	;ÍŞÛ¼Ã¨İ’è
+	enw_mac enve_RSN	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_RSN	;´İÍŞÛ°Ìß”gŒ`İ’è
+;15-2	Ì§ÚÄŞÄŞ¼¿ÄŞÚ
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,Re
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kP8,3,Do
+	onp_mac 0,kK8,3,Re
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+;15-3	ÚĞ
+	onp_mac 0,kK16,3,Re
+	onp_mac 0,kK16,3,Mi
+	onp_mac 1,kK8,3,Mi
+	onp_mac 1,kP2,3,Mi
+	onp_mac 1,kK1,3,Do
+	onp_end
+
+;
+;Êß°Ä1‚Ì‰¹•„Ã°ÌŞÙ
+;
+MIRAIHE31_onpu_tbl
+	vel_mac 56	;ÍŞÛ¼Ã¨İ’è
+	env_mac 30	;´İÍŞÛ°ÌßÀ²Ñİ’è
+;0-1	ÄŞĞ¿Ğ¼Ú¿Ú
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Re
+;0-2	×Ğ×ĞÄŞĞ×Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+;0-3	Ì§ÄŞ×ÄŞĞÄŞ×ÄŞ
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Do
+;0-4	ÚÚÌ§×¿Ú¿
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+;1-1	ÄŞ¿ÄŞ¿Ğ¿ÄŞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+;1-2	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;1-3	×Ğ×Ğ×Ğ×Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+;1-4	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;2-1	Ì§ÄŞÌ§ÄŞ¿Ú¿Ú
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Re
+;2-2	Ğ¼¿¼×Ğ×Ğ
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+;2-3	ÚÄŞÌ§ÄŞ¿¼¿Ú
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Re
+;2-4	ÄŞ¿ÄŞÚĞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+	onp_mac 0,kK4,0,So
+	rp1_mac 2	;ØËß°Ä1‰ñ”İ’è
+MIRAIHE31_onpu_tbl_3_1
+;3-1	ÄŞ¿ÄŞ¿Ğ¿ÄŞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+;3-2	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;3-3	×Ğ×ĞÄŞĞ×Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+;3-4	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;4-1	Ì§×Ú¿¼Ú¿
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK4,1,Re
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,0,So
+;4-2	Ğ¼Ú×ÄŞĞ×
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,La
+;4-3	Ì§×ÄŞ×Ì§×Ì§×
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,0,La
+;4-4	¿¼Ú¼Ğ¼ÚĞ
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,0,Si
+;5-1	ÄŞ¿ÄŞ¿Ğ¿ÄŞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+;5-2	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;5-3	Ú×Ú×Ì§ÄŞÌ§ÄŞ
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Do
+;5-4	ÄŞ¿ÄŞ¿Ğ¿ÄŞ¼
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,Si
+;6-1	×Ğ×ĞÄŞĞ×Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+;6-2	Ğ¼Ğ¼¿¼Ğ¼
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;6-3	Ú×Ì§¿Ú¿
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+	jp1_mac MIRAIHE31_onpu_tbl_6_4-MIRAIHE31_onpu_tbl
+	;ØËß°Ä1•ªŠò
+	jmp_mac MIRAIHE31_onpu_tbl_6_5-MIRAIHE31_onpu_tbl
+	;–³ğŒ•ªŠò
+MIRAIHE31_onpu_tbl_6_4
+;6-4	ÄŞ¿ĞÄŞ¿ĞÄŞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	jmp_mac MIRAIHE31_onpu_tbl_3_1-MIRAIHE31_onpu_tbl
+	;–³ğŒ•ªŠò
+
+MIRAIHE31_onpu_tbl_6_5
+;6-5	ÄŞ¿ÚĞ¿ÄŞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK4,1,Do
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+	rp2_mac 2	;ØËß°Ä2‰ñ”İ’è
+MIRAIHE31_onpu_tbl_7_1
+;7-1	Ú×Ú¿Ú¿Ì§
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK4,1,Re
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK16,1,Re
+	onp_mac 0,kP8,1,So
+	onp_mac 0,kK8,0,Fa
+;7-2	Ğ¼Ğ×Ğ×¿
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK16,1,Mi
+	onp_mac 0,kP8,1,La
+	onp_mac 0,kK8,0,So
+;7-3	Ì§ÄŞÌ§Ì§ÄŞ×Ì§
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK4,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,0,Fa
+;7-4	¿Ú¿Ú¼¿¿
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK8,1,So
+;8-1	ÄŞ¿ĞÄŞ¿ĞÄŞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+;8-2	¼¿Ğ¼¿Ğ¼
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;8-3	×ĞÄŞ×ĞÄŞ×
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,La
+;8-4	¿Ğ¼¿Ğ¼¿
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,0,So
+;9-1	Ì§ÄŞÌ§¿¼¿
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+;9-2	Ğ¼¿×Ğ×
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,1,La
+;9-3	Ú×ÄŞ¿Ú¿
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+	jp2_mac MIRAIHE31_onpu_tbl_9_4-MIRAIHE31_onpu_tbl
+	;ØËß°Ä2•ªŠò
+	jmp_mac MIRAIHE31_onpu_tbl_12_0-MIRAIHE31_onpu_tbl
+	;–³ğŒ•ªŠò
+MIRAIHE31_onpu_tbl_9_4
+;9-4	ÄŞ¿ÚĞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kP4,1,Mi
+	vel_mac 56	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kK4,0,So
+;10-1	ÄŞ¿ÄŞ¿¼¿¼¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK8,1,So
+;10-2	×ĞÄŞĞ¿Ğ¿Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+;10-3	Ì§ÄŞÌ§ÄŞĞÄŞĞÄŞ
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+;10-4	Ú×Ì§¿¼Ú¿
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,So
+;11-1	ÄŞ¿ÄŞ¿¼¿¼¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK8,1,So
+;11-2	×Ğ×Ğ¿Ğ¿Ğ
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+;11-3	Ì§ÄŞÌ§ÄŞĞÄŞĞÄŞ
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+;11-4	Ú×Ú×¿Ú¿
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+	jmp_mac MIRAIHE31_onpu_tbl_7_1-MIRAIHE31_onpu_tbl
+	;–³ğŒ•ªŠò
+
+MIRAIHE31_onpu_tbl_12_0
+;12-0	ÄŞ¿ÚĞÄŞ¿
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK4,0,So
+;12-1	ÄŞ¿ĞÄŞ¿ĞÄŞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+;12-2	¼¿Ğ¼¿Ğ¼
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+;12-3	×ĞÄŞ×ĞÄŞ×
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,La
+;12-4	¿Ğ¼¿Ğ¼¿
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK8,0,So
+;13-1	Ì§ÄŞÌ§¿Ú¿Ì§
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Fa
+;13-2	Ğ¼¿×ĞÄŞ
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,0,Si
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK8,0,La
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,2,Do
+;13-3	Ú×Ú¿¿Ì§
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK4,1,Re
+	onp_mac 0,kK4,0,So
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Fa
+;13-4	ÄŞ¿ÚĞ¿ÄŞÚĞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Mi
+;14-1	ÄŞ¿ÄŞ¿Ğ¿ÄŞ¿
+	vel_mac 60	;ÍŞÛ¼Ã¨İ’è
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,So
+;14-2	Ì§×ÄŞÌ§ÄŞÌ§Ğ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK4,2,Fa
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,Mi
+;14-3	Ú×ÄŞ¿Ú¿
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK8,0,So
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,So
+;14-4	Ì§ÄŞÌ§Ì§Ì§Ì§
+	onp_mac 0,kK8,0,Fa
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK4,0,Fa
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK4,0,Fa
+;15-1	ĞÄŞĞĞĞĞ
+	onp_mac 0,kK8,0,Mi
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,0,Mi
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK4,0,Mi
+	enw_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+;15-2	ÚÚÌ§¿
+	onp_mac 0,kK8,0,Re
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK4,1,Fa
+	tmp_mac 95	;ÃİÎßw’è ‘SÊß°Ä‹¤’Ê
+	onp_mac 0,kK2,0,So
+	vel_mac 48	;ÍŞÛ¼Ã¨İ’è
+;15-3	ÄŞ¿ÚĞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	tmp_mac 90	;ÃİÎßw’è
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Mi
+	onp_mac 1,kK2,2,Mi
+	onp_mac 1,kK1,2,Mi
+	onp_end
+
+;
+;Êß°Ä2‚Ì‰¹•„Ã°ÌŞÙ
+;
+MIRAIHE32_onpu_tbl
+	vel_mac 80	;ÍŞÛ¼Ã¨İ’è
+	env_mac 30	;´İÍŞÛ°ÌßÀ²Ñİ’è
+;0-1	ÄŞ¿ÄŞÄŞ¿ÄŞ
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+;0-2	ÄŞ¿ÄŞÄŞ¿ÄŞ¿
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,So
+;0-3	ÄŞ×ÄŞÄŞ×ÄŞ
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+;0-4	ÄŞ×ÄŞ¼¼
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kK4,1,Si
+	enw_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+;1-1	_
+	onp_mac 0,kK1,0,0
+;1-2	_
+	onp_mac 0,kK1,0,0
+;1-3	_
+	onp_mac 0,kK1,0,0
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+;1-4	_¿Ì§Ğ
+	onp_mac 0,kP2,0,0
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Fa
+;2-1	Ì§ÄŞ¼×
+	onp_mac 0,kP4,2,Fa
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP4,2,Si
+	onp_mac 0,kK8,2,La
+;2-2	¿¿××
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kP4,2,La
+	onp_mac 0,kK8,2,La
+;2-3	×××¿Ì§ĞÚ
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Re
+;2-4	ĞÄŞ
+	onp_mac 0,kK2,2,Mi
+	onp_mac 0,kK2,3,Do
+	enw_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+;3-1	_
+	onp_mac 0,kK1,0,0
+;3-2	_¼Ğ¼
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Mi
+	onp_mac 0,kK4,1,Si
+;3-3	_ÄŞĞ
+	onp_mac 0,kK2,2,Do
+	onp_mac 0,kK2,2,Mi
+;3-4	¼Ğ¼
+	onp_mac 0,kK2,1,Si
+	onp_mac 0,kK4,2,Mi
+	onp_mac 0,kK4,1,Si
+;4-1	×ÄŞ¼
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK2,1,Si
+;4-2	¼ÚÄŞ
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Re
+	onp_mac 0,kK2,2,Do
+;4-3	×ÄŞÌ§
+	onp_mac 0,kK2,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Fa
+;4-4	ĞÚ¿
+	onp_mac 0,kK2,2,Mi
+	onp_mac 0,kK4,2,Re
+	onp_mac 0,kK4,2,So
+;5-1	_ĞÚĞÚĞÄŞ¼
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,Re
+	onp_mac 0,kP8,2,Mi
+	onp_mac 0,kK16,2,Do
+	onp_mac 0,kK16,1,Si
+;5-2	_
+	onp_mac 1,kK2,1,Si
+	onp_mac 0,kK2,0,0
+;5-3	_××ÄŞÄŞÄŞÄŞÚ
+	onp_mac 0,kP4,0,0
+	onp_mac 0,kK16,1,La
+	onp_mac 0,kK16,1,La
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kP8,2,Do
+	onp_mac 0,kK16,2,Do
+	onp_mac 0,kK16,2,Do
+	onp_mac 0,kK16,2,Re
+;5-4	ĞĞÚ
+	onp_mac 0,kP2,2,Mi
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Re
+;6-1	ÄŞ×
+	onp_mac 0,kP2,1,Do
+	onp_mac 0,kK4,2,La
+;6-2	¿
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK2,0,0
+;6-3	Ì§Ì§¿¿¿¿¿
+	onp_mac 0,kK4,2,Fa
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kR4,2,So
+	onp_mac 0,kR4,2,So
+	onp_mac 0,kR4,2,So
+;6-4	¿ĞĞ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Mi
+	onp_mac 1,kP2,2,Mi
+	vel_mac 56	;ÍŞÛ¼Ã¨İ’è
+;3-01	Ğ
+	onp_mac 0,kK1,2,Mi
+;3-02	_Ğ¿Ğ
+	onp_mac 1,kK4,2,Mi
+	onp_mac 0,kK4,2,Mi
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK4,2,Mi
+;3-03	_ÄŞĞ
+	onp_mac 0,kK2,2,Do
+	onp_mac 0,kK2,2,Mi
+;3-04	Ğ¿Ğ
+	onp_mac 0,kK2,2,Mi
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK4,2,Mi
+;4-01	×ÄŞ¼
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK2,1,Si
+;4-02	¼ÚÄŞ
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Re
+	onp_mac 0,kK2,2,Do
+;4-03	×ÄŞÌ§
+	onp_mac 0,kK2,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Fa
+;4-04	ĞÚ¿
+	onp_mac 0,kK2,2,Mi
+	onp_mac 0,kK4,2,Re
+	onp_mac 0,kK4,2,So
+;5-01	_ĞÚĞÚ¿×ÄŞ
+	onp_mac 0,kK4,0,0
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK16,2,Re
+	onp_mac 0,kP8,2,Mi
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK16,1,La
+	onp_mac 0,kK16,2,Do
+;5-02	¼
+	onp_mac 1,kK16,2,Do
+	onp_mac 0,kP8,1,Si
+	onp_mac 1,kK4,1,Si
+	onp_mac 0,kK2,0,0
+;5-03	ÚÌ§
+	onp_mac 0,kK2,2,Re
+	onp_mac 0,kK2,2,Fa
+;5-04	ĞĞÚ
+	onp_mac 0,kP2,2,Mi
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,1,Re
+;6-01	ÄŞ×
+	onp_mac 0,kP2,1,Do
+	onp_mac 0,kK4,2,La
+;6-02	¿¿¿¿¿¿
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kP8,2,So
+	onp_mac 0,kK16,2,So
+;6-03	Ì§Ì§¿¿¿¿¿
+	onp_mac 1,kK4,2,Fa
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK16,2,So
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kR4,2,So
+	onp_mac 0,kR4,2,So
+	onp_mac 0,kR4,2,So
+;6-04	¿ĞĞ
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK16,2,Mi
+	onp_mac 0,kK16,2,Mi
+	onp_mac 1,kP2,2,Mi
+	vel_mac 72	;ÍŞÛ¼Ã¨İ’è
+	rp1_mac 2	;ØËß°Ä1‰ñ”İ’è
+MIRAIHE32_onpu_tbl_7_1
+;7-1	×_¿
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kP8,0,0
+	onp_mac 0,kK16,2,So
+	onp_mac 1,kK2,2,So
+;7-2	¼_ÄŞ
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kP8,0,0
+	onp_mac 0,kK16,3,Do
+	onp_mac 1,kK2,3,Do
+;7-3	×××¼ÄŞ×ÄŞ×
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK16,2,Si
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,2,La
+;7-4	¼¼¿
+	onp_mac 0,kP8,2,Si
+	onp_mac 0,kK16,2,Si
+	onp_mac 1,kK2,2,Si
+	onp_mac 0,kK4,2,So
+	enw_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_ELEGANTE	;´İÍŞÛ°Ìß”gŒ`İ’è
+;8-1	¿
+	onp_mac 0,kK1,2,So
+;8-2	¿
+	onp_mac 0,kK1,2,So
+;8-3	Ğ
+	onp_mac 0,kK1,2,Mi
+;8-4	¿
+	onp_mac 0,kK1,2,So
+;9-1	Ì§ÄŞ¼×
+	onp_mac 0,kP4,2,Fa
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP4,2,Si
+	onp_mac 0,kK8,2,La
+;9-2	¿¿××
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kP4,2,La
+	onp_mac 0,kK8,2,La
+;9-3	×××¿Ì§ĞÚ
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Re
+	jp1_mac MIRAIHE32_onpu_tbl_9_4-MIRAIHE32_onpu_tbl
+	;ØËß°Ä1•ªŠò
+	jmp_mac MIRAIHE32_onpu_tbl_12_0-MIRAIHE32_onpu_tbl
+	;–³ğŒ•ªŠò
+MIRAIHE32_onpu_tbl_9_4
+;9-4	Ğ
+	onp_mac 0,kK1,2,Mi
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+;10-1	ÄŞ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK2,0,0
+;10-2	ÄŞ¿×¼
+	onp_mac 0,kK2,2,Do
+	onp_mac 0,kK8,0,0
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,Si
+;10-3	×
+	onp_mac 0,kK2,2,La
+	onp_mac 0,kK2,0,0
+;10-4	_
+	onp_mac 0,kK1,0,0
+;11-1	ĞÚ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK2,2,Re
+;11-2	ÄŞĞ¼
+	onp_mac 0,kK32,2,Do
+	onp_mac 0,kK32,2,Mi
+	onp_mac 1,kP8,2,Mi
+	onp_mac 1,kK2,2,Mi
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kP8,2,Si
+;11-3	×
+	onp_mac 0,kK2,2,La
+	onp_mac 0,kK2,0,0
+;11-4	_
+	onp_mac 0,kK1,0,0
+	enw_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	vel_mac 72	;ÍŞÛ¼Ã¨İ’è
+	jmp_mac MIRAIHE32_onpu_tbl_7_1-MIRAIHE32_onpu_tbl
+	;–³ğŒ•ªŠò
+
+MIRAIHE32_onpu_tbl_12_0
+;12-0	Ğ
+	onp_mac 0,kK1,2,Mi
+	enw_mac enve_TREMOLO	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_TREMOLO	;´İÍŞÛ°Ìß”gŒ`İ’è
+;12-1	¿¿
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 1,kK2,2,So
+;12-2	¿¿
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 1,kK2,2,So
+;12-3	ĞĞ
+	onp_mac 0,kP4,2,Mi
+	onp_mac 0,kK8,2,Mi
+	onp_mac 1,kK2,2,Mi
+;12-4	ĞĞ
+	onp_mac 0,kP4,2,Mi
+	onp_mac 0,kK8,2,Mi
+	onp_mac 1,kK2,2,Mi
+;13-1	Ì§ÄŞ¼×
+	onp_mac 0,kP4,2,Fa
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kP4,2,Si
+	onp_mac 0,kK8,2,La
+;13-2	¿×
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK2,2,La
+;13-3	×××¿Ì§ĞÚ
+	onp_mac 0,kK4,2,La
+	onp_mac 0,kK16,0,0
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK16,2,La
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Re
+;13-4	Ğ
+	onp_mac 0,kK1,2,Mi
+	enw_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+	ena_mac enve_VIB	;´İÍŞÛ°Ìß”gŒ`İ’è
+;14-1	_
+	onp_mac 0,kK1,0,0
+;14-2	_
+	onp_mac 0,kK1,0,0
+	vel_mac 64	;ÍŞÛ¼Ã¨İ’è
+;14-3	×××¿Ì§
+	onp_mac 0,kP4,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 0,kK4,2,So
+	onp_mac 0,kK8,2,Fa
+;14-4	××
+	onp_mac 0,kP4,2,La
+	onp_mac 0,kK8,2,La
+	onp_mac 1,kK2,2,La
+;15-1	¿¿
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 1,kK2,2,So
+;15-2	Ì§Ì§ĞÚĞÌ§
+	onp_mac 0,kP8,2,Fa
+	onp_mac 0,kP8,2,Fa
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kP8,2,Re
+	onp_mac 0,kP8,2,Mi
+	onp_mac 0,kK8,2,Fa
+	vel_mac 48	;ÍŞÛ¼Ã¨İ’è
+;15-3	¿
+	onp_mac 0,kK1,2,So
+	onp_mac 1,kK1,2,Do
+	onp_end
+;
+; (C) 2026 MASARU WATANABE
+
+	end_mac
+	end
