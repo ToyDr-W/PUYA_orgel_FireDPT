@@ -1,0 +1,535 @@
+
+	bgn_mac
+;==============================================
+;浜辺の歌（作曲：成田 為三）
+;==============================================
+
+;
+;ﾊﾟｰﾄ0の音符ﾃﾞｰﾀﾃｰﾌﾞﾙ
+;
+HAMABE0_onpu_tbl
+	vel_mac 140	;ﾍﾞﾛｼﾃｨ設定
+	env_mac 50	;ｴﾝﾍﾞﾛｰﾌﾟﾀｲﾑ設定
+
+;1-1	ｿｿﾄﾞﾐ
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+;1-2	ｼﾗｿ
+	onp_mac 0,kK2,2,Si
+	onp_mac 0,kK4,2,La
+;1-3	ｿｿﾄﾞﾐ
+	onp_mac 0,kP4,2,So
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Mi
+;1-4	ｼﾐﾗ
+	onp_mac 0,kK4,2,Si
+	onp_mac 0,kK4,3,Mi
+	onp_mac 0,kK4,3,La
+;2-1	ﾗﾌｧ
+	onp_mac 0,kK2,3,La
+	onp_mac 0,kK4,3,Fa
+;2-2	ﾄﾞﾚﾗ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,La
+;2-3	ｿﾄﾞ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,4,Do
+;2-4	ﾄﾞｼﾗ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+;3-1	ｿﾐ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Mi
+;3-2	ｿﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Re
+;3-3	ﾄﾞ
+	onp_mac 0,kP2,3,Do
+;3-4	ﾐ_ｿ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK4,2,So
+	rp1_mac 2	;ﾘﾋﾟｰﾄ1 回数設定
+HAMABE0_onpu_tbl_4_1
+;4-1	ｿﾄﾞﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;4-2	ﾐﾚﾄﾞ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+;4-3	ﾚﾗ
+	onp_mac 0,kK2,3,Re
+	onp_mac 0,kK4,2,La
+;4-4	ﾄﾞｼﾗ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+;5-1	ｿﾄﾞ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Do
+;5-2	ﾐﾚﾄﾞ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+;5-3	ﾚ
+	onp_mac 0,kP2,3,Re
+;5-4	_ｿ
+	onp_mac 1,kK2,3,Re
+	onp_mac 0,kK4,2,So
+;6-1	ｿﾄﾞﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;6-2	ﾐﾚﾄﾞ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+;6-3	ﾚﾗ
+	onp_mac 0,kK2,3,Re
+	onp_mac 0,kK4,2,La
+;6-4	ﾄﾞｼﾗ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+;7-1	ｿﾐ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Mi
+;7-2	ｿﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Re
+;7-3	ﾄﾞ
+	onp_mac 0,kP2,3,Do
+;7-4	_ｿ
+	onp_mac 1,kK2,3,Do
+	onp_mac 0,kK4,3,So
+;8-1	ｿﾚ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,Re
+;8-2	ｿﾚ#
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,ReS
+;8-3	ｿ
+	onp_mac 0,kP2,3,So
+;8-4	ﾐﾗ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK4,3,La
+;9-1	ﾗﾌｧ
+	onp_mac 0,kK2,3,La
+	onp_mac 0,kK4,3,Fa
+;9-2	ﾄﾞﾚ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK4,3,Re
+;9-3	ｿ
+	onp_mac 0,kP2,3,So
+;9-4	_ｿ
+	onp_mac 1,kK2,3,So
+	onp_mac 0,kK4,2,So
+;10-1	ｿﾄﾞﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;10-2	ﾐﾚﾄﾞ
+	onp_mac 0,kK2,3,Mi
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+;10-3	ﾚﾗ
+	onp_mac 0,kK2,3,Re
+	onp_mac 0,kK4,2,La
+;10-4	ﾄﾞｼﾗ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+;11-1	ｿﾐ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Mi
+;11-2	ｿﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Re
+;11-3	ﾄﾞ
+	onp_mac 0,kP2,3,Do
+	jp1_mac HAMABE0_onpu_tbl_11_4-HAMABE0_onpu_tbl
+		;ﾘﾋﾟｰﾄ1 分岐
+	jmp_mac HAMABE0_onpu_tbl_21_4-HAMABE0_onpu_tbl
+		;無条件分岐
+HAMABE0_onpu_tbl_11_4		
+;11-4	_ﾗ
+	onp_mac 1,kK2,3,Do
+	onp_mac 0,kK4,3,La
+;12-1	ﾗﾌｧ
+	onp_mac 0,kK2,3,La
+	onp_mac 0,kK4,3,Fa
+;12-2	ﾄﾞﾚﾗ
+	onp_mac 0,kK4,3,Do
+	onp_mac 0,kK4,3,Re
+	onp_mac 0,kK4,3,La
+;12-3	ｿﾐ
+	onp_mac 0,kK2,3,So
+	onp_mac 0,kK4,3,Mi
+;12-4	ﾄﾞｼﾗ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK8,2,Si
+	onp_mac 0,kK8,2,La
+;13-1	ｿﾐ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Mi
+;13-2	ｿﾚ
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK4,3,Re
+;13-3	ﾄﾞ
+	onp_mac 0,kP2,3,Do
+;13-4	_ｿ
+	onp_mac 1,kK2,3,Do
+	onp_mac 0,kK4,2,So
+	jmp_mac HAMABE0_onpu_tbl_4_1-HAMABE0_onpu_tbl
+		;無条件分岐
+HAMABE0_onpu_tbl_21_4
+;21-4	_ｿ
+	onp_mac 0,kK2,3,Do
+	onp_mac 0,kK4,2,So
+;22-1	ｿﾄﾞﾚ
+	tmp_mac 90	;ﾃﾝﾎﾟ指定 全ﾊﾟｰﾄ共通
+	onp_mac 0,kK2,2,So
+	onp_mac 0,kK8,3,Do
+	onp_mac 0,kK8,3,Re
+;22-2	ﾐﾚﾄﾞ
+	onp_mac 0,kK2,3,Mi
+	tmp_mac 70	;ﾃﾝﾎﾟ指定
+	onp_mac 0,kK8,3,Re
+	onp_mac 0,kK8,3,Do
+;22-3	ｼ
+	tmp_mac 60	;ﾃﾝﾎﾟ指定
+	onp_mac 0,kP2,2,Si
+;22-4	(ｼ)	
+	onp_mac 1,kP2,2,Si
+	onp_end
+
+;
+;ﾊﾟｰﾄ1の音符ﾃﾞｰﾀﾃｰﾌﾞﾙ
+;
+HAMABE1_onpu_tbl
+	vel_mac 115	;ﾍﾞﾛｼﾃｨ設定
+	env_mac 50	;ｴﾝﾍﾞﾛｰﾌﾟﾀｲﾑ設定
+		
+;1-1	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK2,2,Do
+;1-2	_
+	onp_mac 1,kP2,2,Do
+;1-3	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK2,2,Do
+;1-4	_
+	onp_mac 1,kP2,2,Do
+;2-1	ﾌｧﾗﾄﾞ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+;2-2	ﾌｧﾗﾄﾞ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+;2-3	ﾐｿﾄﾞ
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+;2-4	ﾗﾄﾞﾚ#
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,ReS
+;3-1	ｿﾄﾞﾐ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Mi
+;3-2	ｿｼﾌｧ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Fa
+;3-3	ﾄﾞｿﾐ
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Mi
+;3-4	ﾄﾞ
+	onp_mac 0,kP2,1,Do
+;4-1	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK4,1,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+;4-2	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK4,1,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+;4-3	ﾌｧﾗﾚ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Re
+;4-4	ﾌｧﾗﾚ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Re
+;5-1	ﾐﾄﾞﾐ
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Mi
+;5-2	ﾄﾞﾌｧ#ﾄﾞ
+	onp_mac 0,kK4,1,Do
+	onp_mac 0,kK4,1,FaS
+	onp_mac 0,kK4,2,Do
+;5-3	ｿﾚﾄﾞ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Re
+	onp_mac 0,kK4,2,Do
+;5-4	ｼﾗｿ
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,1,So
+	rp1_mac 2	;ﾘﾋﾟｰﾄ1 回数設定
+HAMABE1_onpu_tbl_6_1
+;6-1	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK4,1,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+;6-2	ﾄﾞｿ#ﾐ
+	onp_mac 0,kK4,1,Do
+	onp_mac 0,kK4,1,SoS
+	onp_mac 0,kK4,2,Mi
+;6-3	ﾌｧﾗﾚ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Re
+;6-4	ﾌｧ#ﾗﾚ#
+	onp_mac 0,kK4,1,FaS
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,ReS
+;7-1	ｿﾄﾞﾐ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Mi
+;7-2	ｿｼﾌｧ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Fa
+;7-3	ﾄﾞｿﾐ
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Mi
+	jp1_mac HAMABE1_onpu_tbl_7_4-HAMABE1_onpu_tbl
+		;ﾘﾋﾟｰﾄ1 分岐
+	jmp_mac HAMABE1_onpu_tbl_11_4-HAMABE1_onpu_tbl
+		;無条件分岐
+HAMABE1_onpu_tbl_7_4
+;7-4	ｿﾐﾄﾞ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK4,1,Do
+;8-1	ﾚ
+	onp_mac 0,kP2,2,Re
+;8-2	ﾚ#
+	onp_mac 0,kP2,2,ReS
+;8-3	ﾐ
+	onp_mac 0,kP2,2,Mi
+;8-4	ｼ♭
+	onp_mac 0,kP2,1,LaS
+;9-1	ﾌｧ
+	onp_mac 0,kP2,1,Fa
+;9-2	ｿ#
+	onp_mac 0,kP2,1,SoS
+;9-3	ﾚ
+	onp_mac 0,kP2,2,Re
+;9-4	ｿﾗｼ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,1,Si
+	jmp_mac HAMABE1_onpu_tbl_6_1-HAMABE1_onpu_tbl
+		;無条件分岐
+HAMABE1_onpu_tbl_11_4
+;11-4	ﾄﾞ
+	onp_mac 0,kP2,1,Do
+;12-1	ﾌｧﾗﾄﾞ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+;12-2	ﾌｧﾗﾄﾞ
+	onp_mac 0,kK4,1,Fa
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+;12-3	ﾐｿﾄﾞ
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+;12-4	ﾗﾄﾞﾚ#
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,ReS
+;13-1	ｿﾄﾞﾐ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,2,Mi
+;13-2	ｿｼﾌｧ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Si
+	onp_mac 0,kK4,2,Fa
+;13-3	ﾄﾞｿﾐ
+	onp_mac 0,kK4,2,Do
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Mi
+;13-4	ﾄﾞ
+	onp_mac 0,kP2,1,Do
+;14-1	ﾄﾞｿﾄﾞﾚﾐ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+;14-2	ﾄﾞｿﾄﾞﾚﾐ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+;14-3	ﾌｧﾗﾚﾌｧﾚ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK4,2,Re
+;14-4	ﾌｧﾗﾚﾌｧﾚ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK4,2,Re
+;15-1	ﾐﾄﾞﾐﾄﾞﾐ
+	onp_mac 0,kK8,1,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK4,2,Mi
+;15-2	ﾚﾌｧ#ﾗﾄﾞﾗ
+	onp_mac 0,kK8,1,Re
+	onp_mac 0,kK8,1,FaS
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK4,1,La
+;15-3	ｿﾄﾞﾚｿﾚ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,So
+	onp_mac 0,kK4,2,Re
+;15-4	ｿｼﾚ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK2,2,Re
+	rp2_mac 2	;ﾘﾋﾟｰﾄ2 回数設定
+HAMABE1_onpu_tbl_16_1
+;16-1	ﾄﾞｿﾄﾞﾚﾐ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+;16-2	ﾄﾞｿ#ﾄﾞﾚﾐ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,SoS
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+;16-3	ﾌｧﾗﾚﾌｧﾚ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK4,2,Re
+;16-4	ﾌｧ#ﾗﾚ#ﾄﾞﾚ#
+	onp_mac 0,kK8,1,FaS
+	onp_mac 0,kK8,1,La
+	onp_mac 0,kK8,2,ReS
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK4,2,ReS
+;17-1	ｿﾄﾞﾐﾄﾞﾐ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Mi
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK4,2,Mi
+;17-2	ｿｼﾌｧｼﾌｧ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK8,2,Fa
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK4,2,Fa
+;17-3	ﾄﾞｿﾄﾞﾚﾐ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK8,2,Re
+	onp_mac 0,kK4,2,Mi
+	jp2_mac HAMABE1_onpu_tbl_17_4-HAMABE1_onpu_tbl
+		;ﾘﾋﾟｰﾄ1 分岐
+	jmp_mac HAMABE1_onpu_tbl_21_4-HAMABE1_onpu_tbl
+		;無条件分岐
+HAMABE1_onpu_tbl_17_4
+;17-4	ｿﾐﾄﾞ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,Mi
+	onp_mac 0,kK4,1,Do
+;18-1	ｿｼﾚ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK2,2,Re
+;18-2	ｿｼﾚ#
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,1,Si
+	onp_mac 0,kK2,2,ReS
+;18-3	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK2,2,Do
+;18-4	ﾄﾞｿﾄﾞ
+	onp_mac 0,kK8,1,Do
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK2,2,Do
+;19-1	ﾌｧﾄﾞﾌｧ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK2,2,Fa
+;19-2	ﾌｧﾄﾞﾌｧ
+	onp_mac 0,kK8,1,Fa
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK2,2,Fa
+;19-3	ｿﾄﾞﾚ
+	onp_mac 0,kK8,1,So
+	onp_mac 0,kK8,2,Do
+	onp_mac 0,kK2,2,Re
+;19-4	ｿﾗｼ
+	onp_mac 0,kK4,1,So
+	onp_mac 0,kK4,1,La
+	onp_mac 0,kK4,1,Si
+	jmp_mac HAMABE1_onpu_tbl_16_1-HAMABE1_onpu_tbl
+		;無条件分岐
+HAMABE1_onpu_tbl_21_4
+;21-4	ﾄﾞ	
+	onp_mac 0,kP2,1,Do
+;22-1	ﾐ	
+	onp_mac 0,kP2,2,Mi
+;22-2	ﾄﾞ	
+	onp_mac 0,kP2,2,Do
+;22-3	ﾄﾞ	
+	onp_mac 0,kP2,2,Do
+;22-4	(ﾄﾞ)
+	onp_mac 1,kP2,2,Do
+	onp_end
+
+;
+;　（C） 2017-2023 MASARU WATANABE
+
+	end_mac
+	end
