@@ -1,0 +1,3 @@
+	vos_mac(0x000000,0x000fbe,8000)	//1:WAN_1ch16bit16ksps.wav
+	vos_mac(0x000fbe,0x000f2f,8000)	//2:DAME_1ch16bit16ksps.wav
+	vos_mac(0x001eed,0x003a17,8000)	//3:CHIKO_1ch16bit16ksps.wav

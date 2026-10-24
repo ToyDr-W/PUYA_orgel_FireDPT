@@ -1,0 +1,6 @@
+	vos_mac(0x000000,0x002401,8000)	//1:sharin.wav
+	vos_mac(0x002401,0x004575,8000)	//2:kirakiraomeme.wav
+	vos_mac(0x006976,0x001956,8000)	//3:aidorumitai.wav
+	vos_mac(0x0082cc,0x002b18,8000)	//4:kyounooshare.wav
+	vos_mac(0x00ade4,0x001d61,8000)	//5:egaogasuteki.wav
+	vos_mac(0x00cb45,0x0033a5,8000)	//6:kirarin.wav
