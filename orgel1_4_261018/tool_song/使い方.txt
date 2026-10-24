@@ -1,0 +1,4 @@
+①sss.bat を実行する。
+②song.txt の song_ を call i.bat△ に置換し、.asm を削除する。
+②song.txt の中身を ttt.bat に入れ込む。最終行の pause を削除しないこと。
+④ttt.bat を実行すると、song.inc と song.asm ができている。
