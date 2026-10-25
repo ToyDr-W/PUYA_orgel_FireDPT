@@ -31,7 +31,7 @@
 
 ## 📖 詳しい解説・回路図（Wikiページ）
 ファイル構成、回路図や基板レイアウト例などの詳細は専用Wikiをご参照ください。
-### 👉 [詳しい解説・回路図（Wikiページ）](https://github.com/ToyDr-W/PUYA_orgel_FireDPT/wiki/v1.0.0_Proto)
+### 👉 [詳しい解説・回路図（Wikiページ）](https://github.com/ToyDr-W/PUYA_orgel_FireDPT/wiki/Home)
 
 ---
 
