@@ -15,6 +15,11 @@
 <br>
 </p>
 
+### 📥 データのダウンロード方法
+最新の回路図およびプログラム一式をダウンロードするには、 リポジトリ右上にある緑色の **`[ <> Code ]`** ボタンをクリックし、メニューの一番下にある **`Download ZIP`** から一括ダウンロードできます。
+若しくは、[ここをクリックしてください。 ⬇️](https://github.com/ToyDr-W/PUYA_orgel_FireDPT/archive/refs/heads/main.zip)
+ダウンロード（42.3 MBのZIPファイル）が直ちに開始されます。
+
 ---
 
 ## 🗺 開発の歩みとこれからの展望（FritzingからEasyEDAへ）
